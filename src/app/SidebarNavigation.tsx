@@ -171,7 +171,8 @@ export function SidebarNavigation({
           { id: 'dashboard' as NavTab, label: t.nav_dashboard || 'Home', icon: LayoutDashboard },
           { id: 'mix_analyzer' as NavTab, label: t.nav_mix_analyzer?.split(' ')[0] || 'Tank', icon: FlaskConical, badge: selectedTankCount > 0 ? selectedTankCount : undefined },
           { id: 'products' as NavTab, label: language === 'hi' ? 'उत्पाद' : language === 'mr' ? 'उत्पादने' : 'Products', icon: Layers },
-          { id: 'admin' as NavTab, label: language === 'hi' ? 'प्रशासन' : language === 'mr' ? 'प्रशासन' : 'Admin', icon: ShieldAlert }
+          { id: 'admin' as NavTab, label: language === 'hi' ? 'प्रशासन' : language === 'mr' ? 'प्रशासन' : 'Admin', icon: ShieldAlert },
+          { id: 'about' as NavTab, label: language === 'hi' ? 'बारे में' : language === 'mr' ? 'माहिती' : 'About', icon: Info }
         ].map((item) => {
           const Icon = item.icon;
           const isActive = currentTab === item.id;
