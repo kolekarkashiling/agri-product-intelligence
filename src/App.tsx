@@ -44,7 +44,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen hero-mesh-bg text-slate-900 dark:text-slate-100 flex flex-col lg:flex-row relative overflow-hidden">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col lg:flex-row relative overflow-hidden transition-colors duration-500">
       {/* Background Particles */}
       <div className="particle-field hidden dark:block pointer-events-none">
         {[...Array(20)].map((_, i) => (

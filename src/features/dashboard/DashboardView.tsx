@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import {
   Sparkles, ArrowRight, ShieldCheck, Leaf, History, Beaker,
-  CloudSun, BookOpen, Layers, CheckCircle2, AlertTriangle, XCircle, Clock, FlaskConical
+  CloudSun, BookOpen, Layers, CheckCircle2, FlaskConical, Droplets
 } from 'lucide-react';
 import { analysisService, SavedAnalysisComplete } from '../../services/analysis.service';
 import { AGRI_PRODUCTS } from '../../data/products';
-import { StatusBadge } from '../../components/ui/StatusBadge';
-import { Skeleton } from '../../components/ui/Skeleton';
 
 interface DashboardViewProps {
   onStartNewMix: () => void;
@@ -21,11 +19,9 @@ interface DashboardViewProps {
 export function DashboardView({
   onStartNewMix,
   onViewProducts,
-  onViewHistory,
   onViewScheduleGenerator,
   onViewConditionAnalyzer,
   onViewCropGuide,
-  onReopenAnalysis
 }: DashboardViewProps) {
   const [recentAnalyses, setRecentAnalyses] = useState<SavedAnalysisComplete[]>([]);
   const [loading, setLoading] = useState(true);
@@ -46,101 +42,95 @@ export function DashboardView({
   }, []);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 animate-fade-in pb-12 auto-rows-[minmax(180px,auto)]">
+    <div className="flex flex-col gap-5 sm:gap-6 pb-12 animate-fade-in max-w-2xl mx-auto w-full">
       
-      {/* ── 1. Hero Widget (Spans 2 cols, 2 rows) ─────────────────────────────────── */}
-      <div className="md:col-span-2 md:row-span-2 relative rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br from-emerald-950 via-slate-900 to-teal-950 border border-emerald-500/20 shadow-2xl p-5 sm:p-8 text-white flex flex-col justify-between group">
-        <div className="absolute top-0 right-0 w-72 h-72 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none group-hover:bg-emerald-500/25 transition-colors duration-700" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-400/25 text-emerald-300 text-[10px] font-bold backdrop-blur-md mb-4 uppercase tracking-widest">
-            <ShieldCheck className="w-3.5 h-3.5" /> FCO 1985 Compliant
+      {/* ── 1. Hero Widget ─────────────────────────────────── */}
+      <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-emerald-600 to-teal-700 shadow-xl shadow-emerald-900/10 p-6 sm:p-8 text-white flex flex-col justify-between group active:scale-[0.98] transition-transform duration-300">
+        {/* Soft background decor */}
+        <div className="absolute -top-12 -right-12 w-48 h-48 bg-white/10 rounded-full blur-3xl pointer-events-none group-hover:scale-110 transition-transform duration-700" />
+        
+        <div className="relative z-10 flex items-center justify-between mb-4">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/20 backdrop-blur-md text-white text-[11px] font-bold uppercase tracking-wider">
+            <ShieldCheck className="w-4 h-4" /> FCO 1985 Validated
           </div>
+        </div>
 
-          <h1 className="text-3xl sm:text-4xl font-black tracking-tight leading-tight">
-            Tank Mix <span className="bg-gradient-to-r from-emerald-400 to-agri-300 bg-clip-text text-transparent">Intelligence</span>
+        <div className="relative z-10 mb-6">
+          <h1 className="text-3xl sm:text-4xl font-black tracking-tight leading-tight mb-2">
+            Tank Mix<br/>Intelligence
           </h1>
-          <p className="text-sm text-emerald-100/70 mt-3 font-medium leading-relaxed max-w-md">
-            Verify chemical antagonism, WALES mixing sequence, and pH precipitation risks before field application.
+          <p className="text-sm text-emerald-50 font-medium leading-relaxed max-w-sm">
+            Analyze physical compatibility, WALES mixing sequences, and antagonism risks instantly.
           </p>
         </div>
 
-        <div className="relative z-10 mt-8">
+        <div className="relative z-10">
           <button
             onClick={onStartNewMix}
-            className="w-full sm:w-auto inline-flex justify-center items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-emerald-500 text-slate-950 font-black text-sm shadow-xl shadow-emerald-950/50 transition-all duration-300 hover:scale-[1.02] active:scale-95"
+            className="w-full flex justify-center items-center gap-2 px-6 py-4 rounded-2xl bg-white text-teal-800 hover:bg-slate-50 font-black text-sm sm:text-base shadow-lg transition-all duration-300 active:scale-95"
           >
-            <Sparkles className="w-5 h-5 text-slate-950" />
+            <Sparkles className="w-5 h-5 text-teal-600" />
             <span>Start Analysis Engine</span>
-            <ArrowRight className="w-5 h-5 stroke-[2.5]" />
+            <ArrowRight className="w-5 h-5 ml-1 opacity-70" />
           </button>
         </div>
       </div>
 
-      {/* ── 2. Quick Action Widget: Catalog (1 col, 1 row) ────────────────────── */}
-      <div 
-        onClick={onViewProducts}
-        className="rounded-2xl sm:rounded-3xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 p-5 sm:p-6 flex flex-col justify-center items-center text-center cursor-pointer hover:border-emerald-500/50 hover:bg-white dark:hover:bg-slate-800 transition-all group shadow-sm hover:shadow-xl hover:shadow-emerald-900/10"
-      >
-        <div className="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-          <Layers className="w-6 h-6" />
+      {/* ── Grid of Tools ─────────────────────────────────── */}
+      <div className="grid grid-cols-2 gap-4 sm:gap-5">
+        
+        {/* Catalog */}
+        <div 
+          onClick={onViewProducts}
+          className="col-span-2 sm:col-span-1 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800 shadow-sm shadow-slate-200/50 dark:shadow-none p-5 flex items-center gap-4 cursor-pointer hover:border-emerald-500/30 transition-all active:scale-[0.97] group"
+        >
+          <div className="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
+            <Layers className="w-7 h-7" />
+          </div>
+          <div>
+            <h3 className="font-bold text-base text-slate-900 dark:text-white">Product Catalog</h3>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{AGRI_PRODUCTS.length}+ Inputs</p>
+          </div>
         </div>
-        <h3 className="font-black text-lg text-slate-900 dark:text-white">Product Catalog</h3>
-        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">{AGRI_PRODUCTS.length}+ Inputs</p>
-      </div>
 
-      {/* ── 3. Tool Widget: Weather Engine (1 col, 1 row) ─────────────────────── */}
-      <div 
-        onClick={onViewConditionAnalyzer}
-        className="rounded-2xl sm:rounded-3xl bg-gradient-to-br from-amber-500/10 to-orange-500/5 border border-amber-500/20 p-5 sm:p-6 flex flex-col justify-center items-center text-center cursor-pointer hover:border-amber-500/40 transition-all group shadow-sm hover:shadow-xl hover:shadow-amber-900/10"
-      >
-        <div className="w-12 h-12 rounded-full bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-3 group-hover:rotate-12 transition-transform">
-          <CloudSun className="w-6 h-6" />
+        {/* Schedules */}
+        <div 
+          onClick={onViewScheduleGenerator}
+          className="col-span-2 sm:col-span-1 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800 shadow-sm shadow-slate-200/50 dark:shadow-none p-5 flex items-center gap-4 cursor-pointer hover:border-teal-500/30 transition-all active:scale-[0.97] group"
+        >
+          <div className="w-14 h-14 rounded-2xl bg-teal-50 dark:bg-teal-900/20 text-teal-600 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
+            <Droplets className="w-7 h-7" />
+          </div>
+          <div>
+            <h3 className="font-bold text-base text-slate-900 dark:text-white">Spray Schedules</h3>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Stage-by-stage plans</p>
+          </div>
         </div>
-        <h3 className="font-black text-lg text-slate-900 dark:text-white">Spray Weather</h3>
-        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">Check Delta-T limits</p>
-      </div>
 
-      {/* ── 4. Tool Widget: Schedule Generator (Spans 2 cols, 1 row) ───────────── */}
-      <div 
-        onClick={onViewScheduleGenerator}
-        className="md:col-span-2 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-blue-500/10 to-cyan-500/5 border border-blue-500/20 p-5 sm:p-6 flex items-center gap-6 cursor-pointer hover:border-blue-500/40 transition-all group overflow-hidden relative shadow-sm hover:shadow-xl hover:shadow-blue-900/10"
-      >
-        <div className="absolute right-0 bottom-0 opacity-10 transform translate-x-4 translate-y-4 group-hover:scale-110 transition-transform duration-500">
-          <FlaskConical className="w-48 h-48 text-blue-500" />
+        {/* Weather */}
+        <div 
+          onClick={onViewConditionAnalyzer}
+          className="col-span-1 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800 shadow-sm shadow-slate-200/50 dark:shadow-none p-5 flex flex-col justify-center items-center text-center cursor-pointer hover:border-sky-500/30 transition-all active:scale-[0.97] group"
+        >
+          <div className="w-12 h-12 rounded-full bg-sky-50 dark:bg-sky-900/20 text-sky-500 flex items-center justify-center mb-3 group-hover:-translate-y-1 transition-transform duration-300">
+            <CloudSun className="w-6 h-6" />
+          </div>
+          <h3 className="font-bold text-sm text-slate-900 dark:text-white">Spray Weather</h3>
+          <p className="text-[11px] text-slate-500 mt-1">Delta-T limits</p>
         </div>
-        <div className="w-16 h-16 rounded-2xl bg-blue-500/20 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0 z-10 group-hover:scale-105 transition-transform">
-          <FlaskConical className="w-8 h-8" />
-        </div>
-        <div className="z-10">
-          <h3 className="font-black text-xl text-slate-900 dark:text-white">Fertigation Schedules</h3>
-          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 max-w-[250px]">
-            Generate stage-by-stage spray plans and exact chemical cost estimations.
-          </p>
-        </div>
-      </div>
 
-      {/* ── 5. Tool Widget: Crop Guides (1 col, 1 row) ────────────────────────── */}
-      <div 
-        onClick={onViewCropGuide}
-        className="md:col-span-1 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-indigo-500/10 to-purple-500/5 border border-indigo-500/20 p-5 sm:p-6 flex flex-col justify-center items-center text-center cursor-pointer hover:border-indigo-500/40 transition-all group shadow-sm hover:shadow-xl hover:shadow-indigo-900/10"
-      >
-        <div className="w-12 h-12 rounded-full bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-3 group-hover:-translate-y-1 transition-transform">
-          <BookOpen className="w-6 h-6" />
+        {/* Guides */}
+        <div 
+          onClick={onViewCropGuide}
+          className="col-span-1 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800 shadow-sm shadow-slate-200/50 dark:shadow-none p-5 flex flex-col justify-center items-center text-center cursor-pointer hover:border-indigo-500/30 transition-all active:scale-[0.97] group"
+        >
+          <div className="w-12 h-12 rounded-full bg-indigo-50 dark:bg-indigo-900/20 text-indigo-500 flex items-center justify-center mb-3 group-hover:-translate-y-1 transition-transform duration-300">
+            <BookOpen className="w-6 h-6" />
+          </div>
+          <h3 className="font-bold text-sm text-slate-900 dark:text-white">Crop Guides</h3>
+          <p className="text-[11px] text-slate-500 mt-1">Pest & Nutrition</p>
         </div>
-        <h3 className="font-black text-lg text-slate-900 dark:text-white">Agronomy Guides</h3>
-        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">Pest & Nutrition</p>
-      </div>
 
-      {/* ── 6. Stats Widget (1 col, 1 row) ────────────────────────────────────── */}
-      <div className="md:col-span-1 rounded-2xl sm:rounded-3xl bg-slate-900 dark:bg-black border border-slate-800 p-5 sm:p-6 flex flex-col justify-center items-center text-center shadow-inner">
-        <div className="text-3xl font-black text-emerald-400 mb-1">WALES</div>
-        <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Compliant Engine</div>
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent my-3" />
-        <div className="flex items-center gap-1.5 text-xs text-emerald-500 font-bold">
-          <CheckCircle2 className="w-4 h-4" /> Live DB Sync
-        </div>
       </div>
 
     </div>
