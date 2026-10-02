@@ -11,7 +11,7 @@ export interface CropInfo {
   name: string;
   scientificName: string;
   localNameMr: string;
-  category: 'Vegetable' | 'Fruit & Horticulture' | 'Cash Crop' | 'Cereal / Grain' | 'Pulse / Oilseed' | 'Fruit / Vine' | 'Vegetable / Tuber';
+  category: 'Vegetable' | 'Fruit & Horticulture' | 'Cash Crop' | 'Cereal / Grain' | 'Pulse / Oilseed' | 'Fruit / Vine' | 'Vegetable / Tuber' | 'Vegetable / Bulb' | 'Fruit' | 'Spice / Cash Crop' | 'Oilseed / Legume' | 'Cucurbit' | 'Spice' | 'Pulse' | 'Cereal';
   idealSoil: string;
   idealSoilPh: string;
   tempRangeC: string;

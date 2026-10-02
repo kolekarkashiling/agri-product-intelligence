@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { CropInfo } from '../types/crop';
 import { Language } from '../types/agri';
 import {
@@ -14,6 +15,7 @@ import {
   Sparkles,
   TrendingUp
 } from 'lucide-react';
+import { TRANSLATIONS } from '../data/translations';
 
 interface CropDetailsModalProps {
   crop: CropInfo | null;
@@ -26,15 +28,46 @@ export const CropDetailsModal: React.FC<CropDetailsModalProps> = ({
   onClose,
   language
 }) => {
-  if (!crop) return null;
+  // Lock body scrolling when modal is open and listen for Escape key
+  useEffect(() => {
+    if (!crop) return;
 
-  return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/70 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 animate-fade-in">
-      <div className="relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl w-full max-w-4xl max-h-[92vh] overflow-y-auto shadow-2xl p-5 sm:p-8">
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [crop, onClose]);
+
+  if (!crop) return null;
+  const t = TRANSLATIONS[language] || TRANSLATIONS.en;
+
+  return createPortal(
+    <div
+      className="fixed inset-0 z-[100] bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 overflow-y-auto"
+      onClick={onClose}
+      aria-modal="true"
+      role="dialog"
+    >
+      <div
+        className="relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl w-full max-w-4xl max-h-[92vh] overflow-y-auto shadow-2xl p-5 sm:p-8 z-10 my-auto animate-scale-in"
+        onClick={(e) => e.stopPropagation()}
+      >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"
+          className="absolute top-5 right-5 p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer"
+          aria-label="Close"
         >
           <X className="w-5 h-5" />
         </button>
@@ -52,7 +85,7 @@ export const CropDetailsModal: React.FC<CropDetailsModalProps> = ({
 
           <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
             {crop.name}
-            {language === 'mr' && (
+            {language === 'mr' && crop.localNameMr && (
               <span className="text-base sm:text-lg font-bold text-slate-500 dark:text-slate-400">
                 {' '}({crop.localNameMr})
               </span>
@@ -230,12 +263,13 @@ export const CropDetailsModal: React.FC<CropDetailsModalProps> = ({
         <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-end">
           <button
             onClick={onClose}
-            className="px-6 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-white text-white transition-colors"
+            className="px-6 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-white text-white transition-colors cursor-pointer"
           >
             Close Crop Guide
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };

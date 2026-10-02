@@ -91,3 +91,40 @@ ON public.custom_products FOR SELECT USING (true);
 DROP POLICY IF EXISTS "Allow public insert of custom products" ON public.custom_products;
 CREATE POLICY "Allow public insert of custom products" 
 ON public.custom_products FOR INSERT WITH CHECK (true);
+
+
+-- 4. Main Products Catalog Table
+CREATE TABLE IF NOT EXISTS public.products (
+    id TEXT PRIMARY KEY,
+    code TEXT,
+    brand_name TEXT NOT NULL,
+    generic_name TEXT,
+    manufacturer TEXT,
+    category TEXT NOT NULL,
+    formulation TEXT NOT NULL,
+    mixing_order_rank INTEGER NOT NULL,
+    ideal_ph NUMERIC,
+    standard_dose TEXT,
+    standard_unit TEXT,
+    default_dose_per_litre NUMERIC,
+    purpose TEXT,
+    cib_rc_registered BOOLEAN DEFAULT true,
+    is_archived BOOLEAN DEFAULT false,
+    metadata JSONB DEFAULT '{}'::jsonb,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+ALTER TABLE public.products ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Allow public read of products" ON public.products;
+CREATE POLICY "Allow public read of products" 
+ON public.products FOR SELECT USING (true);
+
+DROP POLICY IF EXISTS "Allow public insert of products" ON public.products;
+CREATE POLICY "Allow public insert of products" 
+ON public.products FOR INSERT WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Allow admin modify products" ON public.products;
+CREATE POLICY "Allow admin modify products" 
+ON public.products FOR UPDATE USING (true);

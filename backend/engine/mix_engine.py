@@ -1,8 +1,17 @@
 from typing import List, Dict, Any, Optional
 
-def analyze_tank_mix(selected_products: List[Dict[str, Any]], known_rules: Optional[List[Dict[str, Any]]] = None) -> Dict[str, Any]:
+def analyze_tank_mix(
+    selected_products: List[Dict[str, Any]], 
+    known_rules: Optional[List[Dict[str, Any]]] = None,
+    ingredient_rules: Optional[List[Dict[str, Any]]] = None,
+    formulation_rules: Optional[List[Dict[str, Any]]] = None
+) -> Dict[str, Any]:
     if known_rules is None:
         known_rules = []
+    if ingredient_rules is None:
+        ingredient_rules = []
+    if formulation_rules is None:
+        formulation_rules = []
 
     if len(selected_products) < 2:
         return {
@@ -33,28 +42,55 @@ def analyze_tank_mix(selected_products: List[Dict[str, Any]], known_rules: Optio
             prod_a = selected_products[i]
             prod_b = selected_products[j]
 
-            # 1. Lookup in known rules
+            # Hierarchical Rule Evaluation
             matched_rule = None
             id_a = prod_a.get("id", "")
             id_b = prod_b.get("id", "")
+            form_a = prod_a.get("formulation", "")
+            form_b = prod_b.get("formulation", "")
+            active_a = prod_a.get("activeIngredients", "").lower()
+            active_b = prod_b.get("activeIngredients", "").lower()
 
+            # 1. Check Product-Level Override Rules
             for r in known_rules:
-                if (r.get("productAId") == id_a and r.get("productBId") == id_b) or \
-                   (r.get("productAId") == id_b and r.get("productBId") == id_a):
+                if (r.get("product_a_code") == id_a and r.get("product_b_code") == id_b) or \
+                   (r.get("product_a_code") == id_b and r.get("product_b_code") == id_a) or \
+                   (r.get("product_a_id") == id_a and r.get("product_b_id") == id_b) or \
+                   (r.get("product_a_id") == id_b and r.get("product_b_id") == id_a):
                     matched_rule = r
                     break
+
+            # 2. Check Ingredient-Level Rules (if no product rule)
+            if not matched_rule:
+                for r in ingredient_rules:
+                    ing_a = r.get("ingredient_a", "").lower()
+                    ing_b = r.get("ingredient_b", "").lower()
+                    if (ing_a in active_a and ing_b in active_b) or \
+                       (ing_a in active_b and ing_b in active_a):
+                        matched_rule = r
+                        break
+
+            # 3. Check Formulation-Level Rules (if no product or ingredient rule)
+            if not matched_rule:
+                for r in formulation_rules:
+                    f_a = r.get("formulation_a", "")
+                    f_b = r.get("formulation_b", "")
+                    if (f_a == form_a and f_b == form_b) or \
+                       (f_a == form_b and f_b == form_a):
+                        matched_rule = r
+                        break
 
             if matched_rule:
                 interaction = {
                     "product_a_id": id_a,
                     "product_b_id": id_b,
                     "status": matched_rule.get("status", "insufficient_data"),
-                    "primary_reason": matched_rule.get("primaryReason", ""),
-                    "detailed_explanation": matched_rule.get("detailedExplanation", ""),
-                    "chemical_mechanism": matched_rule.get("chemicalMechanism"),
+                    "primary_reason": matched_rule.get("reason", matched_rule.get("primaryReason", "")),
+                    "detailed_explanation": matched_rule.get("recommendation", matched_rule.get("detailedExplanation", "")),
+                    "chemical_mechanism": matched_rule.get("chemical_mechanism", matched_rule.get("chemicalMechanism")),
                     "safe_alternatives": matched_rule.get("safeAlternatives", []),
-                    "jar_test_required": matched_rule.get("jarTestRequired", True),
-                    "verified_source": matched_rule.get("verifiedSource", "University_Agronomy_Trial")
+                    "jar_test_required": True,
+                    "verified_source": matched_rule.get("source", matched_rule.get("verifiedSource", "Database Engine"))
                 }
             else:
                 interaction = infer_chemical_interaction(prod_a, prod_b)

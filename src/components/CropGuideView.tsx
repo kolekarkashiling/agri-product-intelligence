@@ -3,6 +3,7 @@ import { CropInfo } from '../types/crop';
 import { CROPS_DATABASE } from '../data/crops';
 import { Language } from '../types/agri';
 import { CropDetailsModal } from './CropDetailsModal';
+import { TRANSLATIONS } from '../data/translations';
 import {
   Sprout,
   Search,
@@ -10,7 +11,6 @@ import {
   Thermometer,
   Droplets,
   Calendar,
-  Layers,
   ArrowRight,
   TrendingUp,
   Info
@@ -24,14 +24,15 @@ export const CropGuideView: React.FC<CropGuideViewProps> = ({ language }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [activeCrop, setActiveCrop] = useState<CropInfo | null>(null);
+  const t = TRANSLATIONS[language];
 
   const categories = [
-    { id: 'all', label: 'All Crops (सर्व पिके)' },
-    { id: 'Vegetable', label: 'Vegetables (भाज्या)' },
-    { id: 'Fruit & Horticulture', label: 'Fruits / Horticulture (फळे / फलोत्पादन)' },
-    { id: 'Cash Crop', label: 'Cash Crops (नगदी पिके)' },
-    { id: 'Cereal / Grain', label: 'Cereals / Grains (धान्य पिके)' },
-    { id: 'Pulse / Oilseed', label: 'Pulses & Oilseeds (कडधान्ये / गळीत धान्ये)' }
+    { id: 'all', label: t.crop_all || 'All Crops' },
+    { id: 'Vegetable', label: t.crop_vegetable || 'Vegetables' },
+    { id: 'Fruit & Horticulture', label: t.crop_fruit || 'Fruits / Horticulture' },
+    { id: 'Cash Crop', label: t.crop_cash || 'Cash Crops' },
+    { id: 'Cereal / Grain', label: t.crop_cereal || 'Cereals / Grains' },
+    { id: 'Pulse / Oilseed', label: t.crop_pulse || 'Pulses & Oilseeds' }
   ];
 
   const filteredCrops = CROPS_DATABASE.filter((crop) => {
@@ -57,10 +58,10 @@ export const CropGuideView: React.FC<CropGuideViewProps> = ({ language }) => {
               </div>
               <div>
                 <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
-                  Crop Intelligence Guide & Agronomy Handbook
+                  {t.crop_guide_title || 'Crop Intelligence Guide & Agronomy Handbook'}
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-0.5">
-                  Comprehensive agronomic data, optimal soil pH, critical growth stages, nutrient schedules, and pest/disease management for major crops.
+                  {t.crop_guide_subtitle || 'Comprehensive agronomic data, optimal soil pH, critical growth stages, nutrient schedules, and pest/disease management for major crops.'}
                 </p>
               </div>
             </div>
@@ -75,7 +76,7 @@ export const CropGuideView: React.FC<CropGuideViewProps> = ({ language }) => {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search crop by English or Marathi name (e.g. Tomato, मिरची, गन्ना)..."
+              placeholder={t.crop_search_placeholder || 'Search crop by name...'}
               className="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm font-medium focus:outline-none focus:ring-2 focus:ring-agri-500 text-slate-900 dark:text-white"
             />
           </div>
@@ -123,7 +124,7 @@ export const CropGuideView: React.FC<CropGuideViewProps> = ({ language }) => {
               {/* Crop Name */}
               <h3 className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white">
                 {crop.name}
-                {language === 'mr' && (
+                {(language === 'mr' || language === 'hi') && (
                   <span className="text-sm font-semibold text-slate-600 dark:text-slate-400">
                     {' '}({crop.localNameMr})
                   </span>
@@ -194,7 +195,7 @@ export const CropGuideView: React.FC<CropGuideViewProps> = ({ language }) => {
                 className="w-full flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-2xl text-xs font-bold bg-slate-900 text-white hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-white transition-colors shadow-2xs"
               >
                 <Info className="w-4 h-4" />
-                <span>View Full Agronomy Roadmap</span>
+                <span>{t.crop_view_details || 'View Full Agronomy Roadmap'}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>

@@ -38,6 +38,7 @@ export const ScheduleGeneratorView: React.FC<ScheduleGeneratorViewProps> = ({ la
   const [schedules, setSchedules] = useState<CropSchedule[]>([]);
   const [isSaved, setIsSaved] = useState(false);
   const [newCropName, setNewCropName] = useState('');
+  const t = TRANSLATIONS[language];
 
   // Load from localStorage or Supabase on mount
   useEffect(() => {
@@ -192,10 +193,10 @@ export const ScheduleGeneratorView: React.FC<ScheduleGeneratorViewProps> = ({ la
             </div>
             <div>
               <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
-                Crop Schedule Builder
+                {t.schedule_generator_title || 'Crop Schedule Builder'}
               </h2>
               <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">
-                Create and manage independent day-wise schedules for multiple crops.
+                {t.schedule_generator_subtitle || 'Create and manage independent day-wise schedules for multiple crops.'}
               </p>
             </div>
           </div>
@@ -210,7 +211,7 @@ export const ScheduleGeneratorView: React.FC<ScheduleGeneratorViewProps> = ({ la
               }`}
             >
               {isSaved ? <CheckCircle2 className="w-4 h-4" /> : <Save className="w-4 h-4" />}
-              {isSaved ? 'All Schedules Saved!' : 'Save All Schedules'}
+              {isSaved ? (t.schedule_saved || 'All Schedules Saved!') : (t.schedule_save || 'Save All Schedules')}
             </button>
           </div>
         </div>
@@ -226,7 +227,7 @@ export const ScheduleGeneratorView: React.FC<ScheduleGeneratorViewProps> = ({ la
               value={newCropName}
               onChange={(e) => setNewCropName(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && createNewSchedule()}
-              placeholder="Enter crop name (e.g., Watermelon, Tomato, Onion)"
+              placeholder={t.schedule_crop_name ? `${t.schedule_crop_name} (e.g., Watermelon, Tomato, Onion)` : 'Enter crop name (e.g., Watermelon, Tomato, Onion)'}
               className="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-sm font-semibold focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 outline-none transition-all dark:text-white"
             />
           </div>
@@ -235,7 +236,7 @@ export const ScheduleGeneratorView: React.FC<ScheduleGeneratorViewProps> = ({ la
             disabled={!newCropName.trim()}
             className="w-full sm:w-auto px-6 py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-black rounded-xl text-sm transition-all hover:scale-105 disabled:opacity-50 disabled:hover:scale-100 shadow-md flex items-center justify-center gap-2"
           >
-            <Plus className="w-4 h-4" /> Create Schedule
+            <Plus className="w-4 h-4" /> {t.schedule_add_crop || 'Create Schedule'}
           </button>
         </div>
       </div>
@@ -245,9 +246,9 @@ export const ScheduleGeneratorView: React.FC<ScheduleGeneratorViewProps> = ({ la
           <div className="w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center mx-auto text-slate-400 mb-4">
             <CalendarClock className="w-8 h-8" />
           </div>
-          <h3 className="text-lg font-bold text-slate-800 dark:text-slate-200 mb-1">No Schedules Yet</h3>
+          <h3 className="text-lg font-bold text-slate-800 dark:text-slate-200 mb-1">{t.schedule_no_crops ? t.schedule_no_crops.split('.')[0] : 'No Schedules Yet'}</h3>
           <p className="text-slate-500 dark:text-slate-400 text-sm max-w-sm mx-auto">
-            Enter a crop name above and click "Create Schedule" to start building your first day-wise application plan.
+            {t.schedule_no_crops || 'Enter a crop name above and click "Create Schedule" to start building your first day-wise application plan.'}
           </p>
         </div>
       )}
@@ -300,13 +301,13 @@ export const ScheduleGeneratorView: React.FC<ScheduleGeneratorViewProps> = ({ la
                 <table className="w-full text-left border-collapse min-w-[800px]">
                   <thead>
                     <tr className="bg-slate-100/80 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-700">
-                      <th className="p-3 text-xs font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-wider w-16">Day</th>
-                      <th className="p-3 text-xs font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-wider w-32">Date</th>
-                      <th className="p-3 text-xs font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Fertilizer</th>
-                      <th className="p-3 text-xs font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Spray</th>
-                      <th className="p-3 text-xs font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-wider w-36">Mode</th>
-                      <th className="p-3 text-xs font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-wider w-24">Dose</th>
-                      <th className="p-3 text-xs font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-wider w-28">Cost (₹)</th>
+                      <th className="p-3 text-xs font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-wider w-16">{t.schedule_day || 'Day'}</th>
+                      <th className="p-3 text-xs font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-wider w-32">{t.schedule_date || 'Date'}</th>
+                      <th className="p-3 text-xs font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-wider">{t.schedule_fertilizer || 'Fertilizer'}</th>
+                      <th className="p-3 text-xs font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-wider">{t.schedule_spray || 'Spray'}</th>
+                      <th className="p-3 text-xs font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-wider w-36">{t.schedule_mode || 'Mode'}</th>
+                      <th className="p-3 text-xs font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-wider w-24">{t.schedule_dose || 'Dose'}</th>
+                      <th className="p-3 text-xs font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-wider w-28">{t.schedule_cost || 'Cost (₹)'}</th>
                       <th className="p-3 w-12 text-center"></th>
                     </tr>
                   </thead>
@@ -407,7 +408,7 @@ export const ScheduleGeneratorView: React.FC<ScheduleGeneratorViewProps> = ({ la
                     onClick={() => addRowToSchedule(schedule.id)}
                     className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-900/20 dark:text-indigo-400 dark:hover:bg-indigo-900/40 transition-colors"
                   >
-                    <Plus className="w-4 h-4" /> Add Application Row
+                    <Plus className="w-4 h-4" /> {t.schedule_add_row || 'Add Application Row'}
                   </button>
                 </div>
               </div>

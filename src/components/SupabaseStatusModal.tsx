@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Database, CheckCircle2, AlertCircle, RefreshCw, X, ExternalLink, Copy, Check } from 'lucide-react';
 import { checkSupabaseConnection, isSupabaseConfigured, ConnectionStatus } from '../lib/supabase';
 
@@ -41,10 +42,13 @@ export const SupabaseStatusModal: React.FC<SupabaseStatusModalProps> = ({ isOpen
     setTimeout(() => setCopied(false), 2000);
   };
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fadeIn">
+  return createPortal(
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-fade-in"
+      onClick={onClose}
+    >
       <div 
-        className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden transition-all"
+        className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-2xl max-w-lg w-full overflow-hidden transition-all z-10 my-auto animate-scale-in"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
@@ -158,6 +162,7 @@ export const SupabaseStatusModal: React.FC<SupabaseStatusModalProps> = ({ isOpen
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };

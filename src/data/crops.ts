@@ -690,5 +690,946 @@ export const CROPS_DATABASE: CropInfo[] = [
       'Harvest when soil is workable (not too wet) to avoid mud sticking.',
       'Cure harvested tubers in a cool, shaded area for a week before cold storage.'
     ]
+  },
+  {
+    id: 'crop-onion',
+    name: 'Onion (Kanda)',
+    scientificName: 'Allium cepa',
+    localNameMr: 'कांदा (Onion)',
+    category: 'Vegetable / Bulb',
+    idealSoil: 'Deep, friable, well-drained sandy loam or clay loam rich in organic carbon',
+    idealSoilPh: '6.5 – 7.5',
+    tempRangeC: '15°C – 30°C',
+    waterRequirementMm: '400 – 600 mm',
+    seedRatePerAcre: '3 – 4 kg (Nursery seedlings)',
+    spacing: '15 cm row-to-row × 10 cm plant-to-plant',
+    durationDays: '120 – 140 Days',
+    yieldPerAcre: '10 – 16 Tonnes / Acre',
+    criticalGrowthStages: [
+      {
+        stageName: 'Seedling Establishment (0 - 25 DAT)',
+        durationDays: 'Day 0 to 25',
+        keyActivities: 'Transplanting on flat/raised beds, root dipping in Carbendazim + Imidacloprid.',
+        recommendedNutrients: '12:61:00 (MAP) + Humic Acid',
+        vulnerablePestsAndDiseases: 'Damping off, Onion Maggot'
+      },
+      {
+        stageName: 'Vegetative & Foliar Canopy (25 - 55 DAT)',
+        durationDays: 'Day 25 to 55',
+        keyActivities: 'Weed management, foliar nitrogen and sulphur application.',
+        recommendedNutrients: '19:19:19 + Elemental Sulphur 90% + Zinc EDTA',
+        vulnerablePestsAndDiseases: 'Thrips (Thrips tabaci), Purple Blotch (Alternaria porri)'
+      },
+      {
+        stageName: 'Bulb Initiation & Sizing (55 - 95 DAT)',
+        durationDays: 'Day 55 to 95',
+        keyActivities: 'Strict thrips control, withhold excess nitrogen to avoid thick neck bulbs.',
+        recommendedNutrients: '0:52:34 + 13:0:45 + Boron 20%',
+        vulnerablePestsAndDiseases: 'Thrips, Stemphylium Blight, Downy Mildew'
+      },
+      {
+        stageName: 'Bulb Maturity & Neck Fall (95 - 125 DAT)',
+        durationDays: 'Day 95 to 125',
+        keyActivities: 'Withhold irrigation 15 days before harvest, observe 50% top neck fall.',
+        recommendedNutrients: '0:0:50 (SOP) spray for bulb skin redness and storage life',
+        vulnerablePestsAndDiseases: 'Basal Rot, Neck Rot'
+      }
+    ],
+    majorPests: [
+      { name: 'Onion Thrips (Thrips tabaci)', symptoms: 'Silvery white blotches on leaves, curling, leaf tip drying.', management: 'Fipronil 5 SC (1.5 ml/L) or Spinetoram 11.7 SC (0.5 ml/L) with silicone spreader.' }
+    ],
+    majorDiseases: [
+      { name: 'Purple Blotch (Alternaria porri)', symptoms: 'Small water-soaked sunken lesions turning purplish brown on leaves.', management: 'Tebuconazole 50% + Trifloxystrobin 25% WG (0.6 g/L) or Mancozeb 75 WP.' },
+      { name: 'Stemphylium Leaf Blight', symptoms: 'Yellowish to orange small flecks expanding to tip burn.', management: 'Azoxystrobin 18.2% + Difenoconazole 11.4% SC (1 ml/L).' }
+    ],
+    fertigationSchedule: [
+      { stage: 'Vegetative (0-40 DAT)', products: '19:19:19 + Ammonium Sulphate', dose: '4 kg / acre / week' },
+      { stage: 'Bulb Initiation (40-75 DAT)', products: '0:52:34 + Boron', dose: '4 kg MKP + 500g Boron / acre / week' },
+      { stage: 'Bulb Sizing (75-100 DAT)', products: '13:0:45 + 0:0:50 (SOP)', dose: '5 kg SOP / acre / week' }
+    ],
+    harvestingTips: [
+      'Harvest when 50-70% of onion tops have fallen over naturally.',
+      'Field cure bulbs in windrows under foliage cover for 3-5 days to dry outer scale leaves.',
+      'Cut foliage keeping 2.5 cm neck above bulb to prevent pathogen entry in storage.'
+    ]
+  },
+  {
+    id: 'crop-grapes',
+    name: 'Grapes (Draksh)',
+    scientificName: 'Vitis vinifera',
+    localNameMr: 'द्राक्षे (Grapes)',
+    category: 'Fruit',
+    idealSoil: 'Well-drained sandy loam to medium black soil, electrical conductivity <1.0 dS/m',
+    idealSoilPh: '6.5 – 8.0',
+    tempRangeC: '15°C – 35°C',
+    waterRequirementMm: '700 – 900 mm',
+    seedRatePerAcre: '450 – 550 Rootstocks (Dogridge/Salt Creek)',
+    spacing: '9 to 10 ft row-to-row × 5 to 6 ft vine-to-vine',
+    durationDays: '130 – 160 Days (Forward Pruning)',
+    yieldPerAcre: '10 – 15 Tonnes / Acre',
+    criticalGrowthStages: [
+      {
+        stageName: 'Sprouting & Shoot Growth (0 - 30 DAP)',
+        durationDays: 'Day 0 to 30',
+        keyActivities: 'Hydrogen Cyanamide application for uniform bud break, shoot thinning.',
+        recommendedNutrients: '12:61:00 + Urea + Micronutrient Mix',
+        vulnerablePestsAndDiseases: 'Flea Beetle, Thrips, Anthracnose'
+      },
+      {
+        stageName: 'Flowering & Cap Fall (30 - 55 DAP)',
+        durationDays: 'Day 30 to 55',
+        keyActivities: 'Inflorescence dipping in GA3 (Gibberellic Acid) for elongation, berry thinning.',
+        recommendedNutrients: '0:52:34 + Boron 20% + Zinc EDTA',
+        vulnerablePestsAndDiseases: 'Downy Mildew (Plasmopara viticola), Powdery Mildew'
+      },
+      {
+        stageName: 'Berry Sizing & Softening (55 - 90 DAP)',
+        durationDays: 'Day 55 to 90',
+        keyActivities: 'GA3 dipping for berry enlargement, canopy tipping and cluster aeration.',
+        recommendedNutrients: 'Calcium Nitrate + Magnesium Sulphate + 13:0:45',
+        vulnerablePestsAndDiseases: 'Mealybug, Downy Mildew, Leafhopper'
+      },
+      {
+        stageName: 'Veraison, Sugar Accumulation & Harvest (90 - 145 DAP)',
+        durationDays: 'Day 90 to 145',
+        keyActivities: 'Bunch aeration, bird netting, monitoring brix levels (18-20° Brix).',
+        recommendedNutrients: '0:0:50 (SOP) + Potassium Silicate',
+        vulnerablePestsAndDiseases: 'Berry Cracking, Botrytis Bunch Rot'
+      }
+    ],
+    majorPests: [
+      { name: 'Grapevine Mealybug (Maconellicoccus hirsutus)', symptoms: 'White waxy colonies on bunches and canes, sticky honeydew and sooty mould.', management: 'Spirotetramat + Imidacloprid SC (0.6 ml/L) or Cryptolaemus predatory beetles.' }
+    ],
+    majorDiseases: [
+      { name: 'Downy Mildew (Plasmopara viticola)', symptoms: 'Yellow oily spots on upper leaf surface, white downy growth underneath, infected bunches turn brown and shrivel.', management: 'Cymoxanil 8% + Mancozeb 64% WP (2.5 g/L) or Dimethomorph 50 WP (1 g/L).' },
+      { name: 'Powdery Mildew (Uncinula necator)', symptoms: 'White powdery coating on leaves and young berries, leading to berry cracking.', management: 'Hexaconazole 5 EC (1 ml/L) or Nativo (Tebuconazole + Trifloxystrobin WG, 0.4 g/L).' }
+    ],
+    fertigationSchedule: [
+      { stage: 'Shoot Growth', products: '19:19:19 + 12:61:0', dose: '5 kg / acre / week' },
+      { stage: 'Berry Sizing', products: 'Calcium Nitrate + 0:52:34 (Separate)', dose: '5 kg / acre / week' },
+      { stage: 'Veraison to Harvest', products: '0:0:50 (SOP)', dose: '6 kg / acre / week' }
+    ],
+    harvestingTips: [
+      'Harvest when berries reach minimum 18-20° Brix sugar content and acidity drops below 0.6%.',
+      'Harvest during cool morning hours using sharp harvesting shears.'
+    ]
+  },
+  {
+    id: 'crop-banana',
+    name: 'Banana (Kela)',
+    scientificName: 'Musa acuminata',
+    localNameMr: 'केळी (Banana)',
+    category: 'Fruit',
+    idealSoil: 'Deep, rich, loamy soil with 0.5-1% organic carbon and good drainage',
+    idealSoilPh: '6.5 – 7.5',
+    tempRangeC: '20°C – 35°C',
+    waterRequirementMm: '1200 – 1800 mm (High water consumer)',
+    seedRatePerAcre: '1200 – 1400 Tissue Culture Plantlets (Grand Naine - G9)',
+    spacing: '5 ft × 5 ft or 6 ft × 5 ft',
+    durationDays: '330 – 365 Days (11-12 Months)',
+    yieldPerAcre: '35 – 45 Tonnes / Acre',
+    criticalGrowthStages: [
+      {
+        stageName: 'Establishment & Vegetative (0 - 5 Months)',
+        durationDays: 'Month 0 to 5',
+        keyActivities: 'Weed management, desuckering, monthly drip fertigation.',
+        recommendedNutrients: 'Urea + 19:19:19 + Magnesium Sulphate + Ferrous Sulphate',
+        vulnerablePestsAndDiseases: 'Rhizome Weevil, Nematodes, Sigatoka Leaf Spot'
+      },
+      {
+        stageName: 'Shooting & Flower Inflorescence (6 - 8 Months)',
+        durationDays: 'Month 6 to 8',
+        keyActivities: 'Bunch emergence, opening petals, spraying bunch, removing male bud (denavelling).',
+        recommendedNutrients: '0:52:34 + Calcium Nitrate + Potassium Nitrate',
+        vulnerablePestsAndDiseases: 'Thrips (Rust Thrips), Bunch Aphid, Sigatoka'
+      },
+      {
+        stageName: 'Bunch Sizing & Finger Development (8 - 11 Months)',
+        durationDays: 'Month 8 to 11',
+        keyActivities: 'Bunch sleeve covering (blue polyethylene bag), bamboo prop support.',
+        recommendedNutrients: '0:0:50 (SOP) + Micronutrient spray + GA3 (10 ppm)',
+        vulnerablePestsAndDiseases: 'Anthracnose, Cigar End Rot'
+      }
+    ],
+    majorPests: [
+      { name: 'Banana Pseudostem Weevil (Odoiporus longicollis)', symptoms: 'Pinholes with gummy exudation on pseudostem, yellowing of crown.', management: 'Stem injection with Chlorpyrifos 20 EC or monocrotophos.' }
+    ],
+    majorDiseases: [
+      { name: 'Sigatoka Leaf Spot (Mycosphaerella musicola)', symptoms: 'Spindle-shaped brown streaks with grey center on leaves, drying green canopy.', management: 'Propiconazole 25 EC (1 ml/L) + Mineral oil or Azoxystrobin SC (1 ml/L).' },
+      { name: 'Panama Wilt (Fusarium oxysporum f. sp. cubense)', symptoms: 'Yellowing of lower leaves, longitudinal splitting of pseudostem.', management: 'Drenching with Trichoderma viride + Carbendazim 50 WP.' }
+    ],
+    fertigationSchedule: [
+      { stage: 'Vegetative Phase', products: 'Urea + 19:19:19 + DAP', dose: '15-20 kg N-P-K per acre / week' },
+      { stage: 'Shooting to Harvest', products: '0:0:50 + SOP + Potassium Nitrate', dose: '25 kg Potash / acre / week' }
+    ],
+    harvestingTips: [
+      'Harvest bunches when fingers become plump and angles disappear (3/4th to full maturity).',
+      'Leave 20-30 cm stalk above the first hand for convenient handling.'
+    ]
+  },
+  {
+    id: 'crop-ginger',
+    name: 'Ginger (Adrak)',
+    scientificName: 'Zingiber officinale',
+    localNameMr: 'आले / अद्रक (Ginger)',
+    category: 'Spice / Cash Crop',
+    idealSoil: 'Sandy loam or clay loam with high organic humus and zero waterlogging',
+    idealSoilPh: '6.0 – 6.8',
+    tempRangeC: '19°C – 28°C',
+    waterRequirementMm: '1500 – 2000 mm',
+    seedRatePerAcre: '8 – 10 Quintals of seed rhizomes (25-30g pieces with 1-2 buds)',
+    spacing: 'Raised beds (120 cm width) × 25 cm row × 20 cm plant',
+    durationDays: '210 – 240 Days (7-8 Months)',
+    yieldPerAcre: '8 – 14 Tonnes green ginger / Acre',
+    criticalGrowthStages: [
+      {
+        stageName: 'Sprouting & Emergence (0 - 45 DAP)',
+        durationDays: 'Day 0 to 45',
+        keyActivities: 'Rhizome treatment with Trichoderma + Mancozeb, green leaf mulching.',
+        recommendedNutrients: 'Basal FYM + DAP + Neem cake + 12:61:00',
+        vulnerablePestsAndDiseases: 'Rhizome Rot (Pythium), Shoot Borer'
+      },
+      {
+        stageName: 'Tillering & Vegetative Canopy (45 - 120 DAP)',
+        durationDays: 'Day 45 to 120',
+        keyActivities: 'Second and third earthing up, replenishing leaf mulch.',
+        recommendedNutrients: '19:19:19 + Magnesium Sulphate + Micronutrient Foliar',
+        vulnerablePestsAndDiseases: 'Bacterial Wilt, Soft Rot, Leaf Spot'
+      },
+      {
+        stageName: 'Rhizome Development & Maturation (120 - 220 DAP)',
+        durationDays: 'Day 120 to 220',
+        keyActivities: 'Regulated moisture, drenching bio-fungicides to prevent soft rot.',
+        recommendedNutrients: '0:52:34 + 13:0:45 + Potassium Silicate',
+        vulnerablePestsAndDiseases: 'Rhizome Scale, Soft Rot (Pythium aphanidermatum)'
+      }
+    ],
+    majorPests: [
+      { name: 'Shoot Borer (Conogethes punctiferalis)', symptoms: 'Bore holes on pseudo-stems with frass, central shoot dies (dead heart).', management: 'Chlorantraniliprole 18.5 SC (0.4 ml/L) or Flubendiamide 39.35 SC.' }
+    ],
+    majorDiseases: [
+      { name: 'Soft Rot / Rhizome Rot (Pythium spp.)', symptoms: 'Water-soaked soft brown decay of collar region, rotting rhizomes emit foul smell.', management: 'Metalaxyl-M 4% + Mancozeb 64% WP drenching (2.5 g/L) + Trichoderma viride.' }
+    ],
+    fertigationSchedule: [
+      { stage: 'Tillering Stage', products: '19:19:19 + Humic Acid', dose: '4 kg / acre / week' },
+      { stage: 'Rhizome Expansion', products: '0:52:34 + 13:0:45', dose: '5 kg / acre / week' }
+    ],
+    harvestingTips: [
+      'Harvest green ginger at 6 months; harvest mature dry ginger at 8 months when leaves turn completely yellow and dry.'
+    ]
+  },
+  {
+    id: 'crop-turmeric',
+    name: 'Turmeric (Haldi)',
+    scientificName: 'Curcuma longa',
+    localNameMr: 'हळद (Turmeric)',
+    category: 'Spice / Cash Crop',
+    idealSoil: 'Deep, loose, fertile sandy loam or alluvial soil with high drainage',
+    idealSoilPh: '6.5 – 7.5',
+    tempRangeC: '20°C – 35°C',
+    waterRequirementMm: '1200 – 1500 mm',
+    seedRatePerAcre: '8 – 10 Quintals mother or finger rhizomes',
+    spacing: 'Raised beds (4.5 to 5 ft broad beds) with 2 rows × 30 cm spacing',
+    durationDays: '240 – 270 Days (8-9 Months)',
+    yieldPerAcre: '12 – 18 Tonnes fresh rhizomes (2.5 – 3.5 Tonnes cured dry)',
+    criticalGrowthStages: [
+      {
+        stageName: 'Sprouting & Establishment (0 - 60 DAP)',
+        durationDays: 'Day 0 to 60',
+        keyActivities: 'Seed rhizome treatment, straw/sugarcane bagasse mulching.',
+        recommendedNutrients: '12:61:0 + Humic Acid + VAM bio-fertilizer',
+        vulnerablePestsAndDiseases: 'Rhizome Rot, Damping off'
+      },
+      {
+        stageName: 'Tillering & Canopy Expansion (60 - 150 DAP)',
+        durationDays: 'Day 60 to 150',
+        keyActivities: 'Earthing up to facilitate finger development, weed removal.',
+        recommendedNutrients: '19:19:19 + Sulphur 90% + Ferrous Sulphate + Zinc EDTA',
+        vulnerablePestsAndDiseases: 'Leaf Blotch (Taphrina maculans), Leaf Spot (Colletotrichum)'
+      },
+      {
+        stageName: 'Rhizome Bulking & Curcumin Accumulation (150 - 240 DAP)',
+        durationDays: 'Day 150 to 240',
+        keyActivities: 'High potassium nutrition for curcumin synthesis and finger density.',
+        recommendedNutrients: '0:52:34 + 0:0:50 (SOP) + Boron 20%',
+        vulnerablePestsAndDiseases: 'Rhizome Scale, Shoot Borer'
+      }
+    ],
+    majorPests: [
+      { name: 'Shoot Borer (Conogethes punctiferalis)', symptoms: 'Larva bores into pseudo-stem leading to central shoot drying.', management: 'Spinetoram 11.7 SC (0.5 ml/L) or Emamectin Benzoate 5 SG.' }
+    ],
+    majorDiseases: [
+      { name: 'Rhizome Rot (Pythium aphanidermatum)', symptoms: 'Basal leaf yellowing progressing upwards, rhizomes become soft and rot.', management: 'Copper Oxychloride 50 WP (3 g/L) + Streptocycline drenching.' },
+      { name: 'Leaf Blotch (Taphrina maculans)', symptoms: 'Small reddish brown spots coalescing on both sides of leaf.', management: 'Mancozeb 75 WP (2.5 g/L) or Azoxystrobin + Difenoconazole (1 ml/L).' }
+    ],
+    fertigationSchedule: [
+      { stage: 'Canopy Development', products: '19:19:19 + Urea', dose: '5 kg / acre / week' },
+      { stage: 'Rhizome Bulking', products: '0:52:34 + 0:0:50 (SOP)', dose: '6 kg / acre / week' }
+    ],
+    harvestingTips: [
+      'Harvest when aerial leaves turn yellow and dry completely (around 8-9 months after planting).'
+    ]
+  },
+  {
+    id: 'crop-groundnut',
+    name: 'Groundnut / Peanut (Mungfali)',
+    scientificName: 'Arachis hypogaea',
+    localNameMr: 'भुईमूग (Groundnut)',
+    category: 'Oilseed / Legume',
+    idealSoil: 'Light sandy loam or loamy sand with good calcium and organic matter',
+    idealSoilPh: '6.0 – 7.0',
+    tempRangeC: '22°C – 30°C',
+    waterRequirementMm: '450 – 600 mm',
+    seedRatePerAcre: '40 – 50 kg kernels (Seed treated with Rhizobium + Trichoderma)',
+    spacing: '30 cm row-to-row × 10 cm plant-to-plant',
+    durationDays: '105 – 120 Days',
+    yieldPerAcre: '1.2 – 1.8 Tonnes dry pods / Acre',
+    criticalGrowthStages: [
+      {
+        stageName: 'Vegetative Growth (0 - 30 DAS)',
+        durationDays: 'Day 0 to 30',
+        keyActivities: 'Seed treatment, weed control with post-emergence herbicide.',
+        recommendedNutrients: 'Basal SSP + Gypsum (200 kg/acre) + Zinc Sulphate',
+        vulnerablePestsAndDiseases: 'Collar Rot, Aphids'
+      },
+      {
+        stageName: 'Flowering & Pegging (30 - 60 DAS)',
+        durationDays: 'Day 30 to 60',
+        keyActivities: 'Crucial Gypsum application at pegging (Day 40-45) for shell development.',
+        recommendedNutrients: 'Gypsum (Calcium & Sulphur) + Boron foliar spray (1 g/L)',
+        vulnerablePestsAndDiseases: 'Tikka Leaf Spot (Cercospora), Spodoptera litura (Tobacco Caterpillar)'
+      },
+      {
+        stageName: 'Pod Development & Kernel Filling (60 - 100 DAS)',
+        durationDays: 'Day 60 to 100',
+        keyActivities: 'Moisture maintenance; avoid soil compaction around developing pods.',
+        recommendedNutrients: '0:52:34 + 13:0:45 (Foliar)',
+        vulnerablePestsAndDiseases: 'Rust (Puccinia arachidis), Pod Borers'
+      }
+    ],
+    majorPests: [
+      { name: 'Spodoptera Caterpillar (Spodoptera litura)', symptoms: 'Defoliation of leaves, skeletonized leaf appearance.', management: 'Emamectin Benzoate 5 SG (0.4 g/L) or Chlorantraniliprole 18.5 SC.' }
+    ],
+    majorDiseases: [
+      { name: 'Tikka Leaf Spot (Cercospora arachidicola)', symptoms: 'Dark brown spots with yellow halo on leaves leading to premature leaf shedding.', management: 'Hexaconazole 5 EC (1 ml/L) or Mancozeb 75 WP (2.5 g/L).' }
+    ],
+    fertigationSchedule: [
+      { stage: 'Pegging Phase', products: 'Gypsum (Soil) + Boron (Foliar)', dose: '200 kg Gypsum soil + 1g/L Boron' },
+      { stage: 'Pod Filling', products: '0:52:34 + 0:0:50', dose: '3 kg / acre' }
+    ],
+    harvestingTips: [
+      'Harvest when inside shell turns dark brownish-black and kernels have natural pink seed coats.'
+    ]
+  },
+  {
+    id: 'crop-wheat',
+    name: 'Wheat',
+    scientificName: 'Triticum aestivum',
+    localNameMr: 'गहू (Wheat)',
+    category: 'Cereal / Grain',
+    idealSoil: 'Well-drained loamy or clay loam soil, good water retention',
+    idealSoilPh: '6.0 – 7.5',
+    tempRangeC: '10°C – 25°C (Cold tolerant; sensitive to frost at flowering)',
+    waterRequirementMm: '450 – 650 mm',
+    seedRatePerAcre: '40 – 45 kg (Broadcast); 30 – 35 kg (Drilled)',
+    spacing: 'Row-to-row: 20–22 cm (Drill sowing)',
+    durationDays: '110 – 130 Days',
+    yieldPerAcre: '15 – 22 Quintals / Acre',
+    criticalGrowthStages: [
+      {
+        stageName: 'Germination & Crown Root (0 - 21 DAS)',
+        durationDays: 'Day 0 to 21',
+        keyActivities: 'Seed treatment with Carbendazim + Thiram, basal fertilizer (DAP + Urea).',
+        recommendedNutrients: 'DAP (18:46:0) 50 kg/acre + Urea 25 kg/acre (Basal)',
+        vulnerablePestsAndDiseases: 'Loose Smut (Ustilago), Termites, Root Aphid'
+      },
+      {
+        stageName: 'Tillering (21 - 45 DAS)',
+        durationDays: 'Day 21 to 45',
+        keyActivities: 'First top dressing of Urea; weed management with Clodinafop + Metsulfuron.',
+        recommendedNutrients: 'Urea 25 kg/acre (Top Dressing)',
+        vulnerablePestsAndDiseases: 'Yellow Rust (Puccinia striiformis), Aphids, Weeds'
+      },
+      {
+        stageName: 'Jointing & Booting (45 - 75 DAS)',
+        durationDays: 'Day 45 to 75',
+        keyActivities: 'Second top dressing; monitor for rust with fungicide.',
+        recommendedNutrients: 'Urea 20 kg/acre + Potassium Sulphate 10 kg/acre',
+        vulnerablePestsAndDiseases: 'Brown Rust, Black Rust, Leaf Blight'
+      },
+      {
+        stageName: 'Grain Filling & Harvest (75 - 120 DAS)',
+        durationDays: 'Day 75 to 120',
+        keyActivities: 'Irrigation at grain filling; avoid lodging; harvest at golden yellow stage.',
+        recommendedNutrients: 'Potassium Nitrate (13:0:45) Foliar 0.5% solution',
+        vulnerablePestsAndDiseases: 'Karnal Bunt, Aphid (Grain), Rodents'
+      }
+    ],
+    majorPests: [
+      { name: 'Aphid (Sitobion avenae)', symptoms: 'Colonies on leaves and ears; honeydew causes sooty mould.', management: 'Dimethoate 30 EC (1 ml/L) or Thiamethoxam 25 WG (0.3 g/L).' },
+      { name: 'Army Worm (Mythimna separata)', symptoms: 'Defoliation and cutting of ears during grain filling.', management: 'Chlorpyrifos 20 EC (2 ml/L) or Emamectin Benzoate 5 SG.' }
+    ],
+    majorDiseases: [
+      { name: 'Yellow Rust (Puccinia striiformis)', symptoms: 'Stripe pattern of yellow pustules running along leaf veins.', management: 'Propiconazole 25 EC (1 ml/L) or Tebuconazole 250 EW (1 ml/L).' },
+      { name: 'Loose Smut (Ustilago tritici)', symptoms: 'Entire ear replaced with black fungal mass of spores.', management: 'Seed treatment with Carboxin + Thiram 37.5 DS (2 g/kg seed).' }
+    ],
+    fertigationSchedule: [
+      { stage: 'Basal (At Sowing)', products: 'DAP + Muriate of Potash', dose: '50 kg DAP + 25 kg MOP/acre' },
+      { stage: 'First Top Dressing (21 DAS)', products: 'Urea', dose: '25 kg/acre' },
+      { stage: 'Second Top Dressing (45 DAS)', products: 'Urea', dose: '20 kg/acre' }
+    ],
+    harvestingTips: [
+      'Harvest when crop turns golden yellow and grains are hard.',
+      'Moisture at harvest should be 12–14% for safe storage.',
+      'Thrashing within 2–3 days of cutting to prevent field losses.'
+    ]
+  },
+  {
+    id: 'crop-maize',
+    name: 'Maize / Corn',
+    scientificName: 'Zea mays',
+    localNameMr: 'मका (Maize)',
+    category: 'Cereal / Grain',
+    idealSoil: 'Deep, well-drained loamy soil; does not tolerate waterlogging',
+    idealSoilPh: '5.8 – 7.0',
+    tempRangeC: '18°C – 32°C (Sensitive to frost)',
+    waterRequirementMm: '500 – 800 mm',
+    seedRatePerAcre: '8 – 10 kg (Hybrid) / 20 kg (Open Pollinated)',
+    spacing: '60–75 cm row × 20–25 cm plant',
+    durationDays: '90 – 110 Days (Kharif); 100 – 120 Days (Rabi)',
+    yieldPerAcre: '25 – 40 Quintals / Acre (Hybrid)',
+    criticalGrowthStages: [
+      {
+        stageName: 'Seedling & Establishment (0 - 20 DAS)',
+        durationDays: 'Day 0 to 20',
+        keyActivities: 'Seed treatment with fungicide + insecticide slurry; adequate soil moisture at sowing.',
+        recommendedNutrients: '12:32:16 (Complex) 50 kg/acre as basal',
+        vulnerablePestsAndDiseases: 'Seed rot, Pythium damping off, Cutworms'
+      },
+      {
+        stageName: 'Vegetative (V3 - V8) (20 - 50 DAS)',
+        durationDays: 'Day 20 to 50',
+        keyActivities: 'First top dressing; earthing up for root anchorage; weed management.',
+        recommendedNutrients: 'Urea 30 kg + Potassium Sulphate 15 kg/acre',
+        vulnerablePestsAndDiseases: 'Fall Army Worm (Spodoptera frugiperda), Shoot Fly, Downy Mildew'
+      },
+      {
+        stageName: 'Tasseling & Silking (50 - 75 DAS)',
+        durationDays: 'Day 50 to 75',
+        keyActivities: 'Most critical irrigation window; ensure no water stress at silking.',
+        recommendedNutrients: '0:52:34 (MKP) + Boron 0.5 g/L foliar',
+        vulnerablePestsAndDiseases: 'Corn Borer (Chilo partellus), Smut, Corn Leaf Aphid'
+      },
+      {
+        stageName: 'Grain Filling & Maturity (75 - 110 DAS)',
+        durationDays: 'Day 75 to 110',
+        keyActivities: 'Withhold irrigation 20 days before harvest; harvest at black layer formation.',
+        recommendedNutrients: 'Potassium Nitrate (13:0:45) Foliar 0.5%',
+        vulnerablePestsAndDiseases: 'Rust, Ear Borer, Fusarium Ear Rot'
+      }
+    ],
+    majorPests: [
+      { name: 'Fall Army Worm (Spodoptera frugiperda)', symptoms: 'Window-pane damage on whorl leaves with pinhole pattern; frass deposits.', management: 'Emamectin Benzoate 5 SG (0.4 g/L) or Chlorantraniliprole 18.5 SC (0.4 ml/L) applied into whorl.' },
+      { name: 'Corn Stem Borer (Chilo partellus)', symptoms: 'Dead heart in whorl stage; bored stems with frass at tasseling.', management: 'Carbofuran 3G granules into whorl (8 kg/acre) or Quinalphos 25 EC (2 ml/L).' }
+    ],
+    majorDiseases: [
+      { name: 'Turcicum Blight (Exserohilum turcicum)', symptoms: 'Long cigar-shaped tan lesions with wavy margins on leaves.', management: 'Mancozeb 75 WP (2.5 g/L) or Azoxystrobin + Difenoconazole SC (1 ml/L).' },
+      { name: 'Downy Mildew (Peronosclerospora sorghi)', symptoms: 'Chlorotic stripes on leaves; white downy growth on underside.', management: 'Metalaxyl 8% + Mancozeb 64% WP (2.5 g/L); seed treatment with Metalaxyl.' }
+    ],
+    fertigationSchedule: [
+      { stage: 'Basal', products: '12:32:16 Complex', dose: '50 kg/acre' },
+      { stage: '25 DAS Top Dressing', products: 'Urea + MOP', dose: '30 kg + 15 kg/acre' },
+      { stage: '45 DAS Top Dressing', products: 'Urea', dose: '20 kg/acre' }
+    ],
+    harvestingTips: [
+      'Harvest at 25–30% grain moisture (black layer visible at tip of grain).',
+      'Dry to 12–13% for safe storage.',
+      'Separate cobs from husk and shell promptly to prevent aflatoxin contamination.'
+    ]
+  },
+  {
+    id: 'crop-mango',
+    name: 'Mango',
+    scientificName: 'Mangifera indica',
+    localNameMr: 'आंबा (Mango)',
+    category: 'Fruit & Horticulture',
+    idealSoil: 'Deep, well-drained sandy loam to loamy soil; tolerates slightly acidic soils',
+    idealSoilPh: '5.5 – 7.5',
+    tempRangeC: '24°C – 30°C (Cool dry period needed for flowering)',
+    waterRequirementMm: '1000 – 1500 mm',
+    seedRatePerAcre: '40 – 50 Grafted plants / acre (5 × 8 m spacing)',
+    spacing: '8 m × 5 m (High Density) to 10 m × 10 m (Conventional)',
+    durationDays: 'Perennial; 3–5 years to first commercial harvest',
+    yieldPerAcre: '4 – 10 Tonnes / Acre (Bearing stage)',
+    criticalGrowthStages: [
+      {
+        stageName: 'Pre-flowering / Panicle Initiation (Oct - Dec)',
+        durationDays: 'October to December',
+        keyActivities: 'Withhold irrigation 4–6 weeks to induce stress for flower initiation; apply Paclobutrazol.',
+        recommendedNutrients: 'Potassium Sulphate 2 kg/tree; Superphosphate 1 kg/tree',
+        vulnerablePestsAndDiseases: 'Anthracnose (Colletotrichum), Powdery Mildew, Thrips'
+      },
+      {
+        stageName: 'Flowering & Fruit Set (Jan - Mar)',
+        durationDays: 'January to March',
+        keyActivities: 'Protect panicles from fungal diseases; bee pollination is critical.',
+        recommendedNutrients: 'Boron 0.5 g/L + Calcium Nitrate 2 g/L foliar spray',
+        vulnerablePestsAndDiseases: 'Powdery Mildew (Oidium mangiferae), Hoppers (Amritodus atkinsoni), Mango Inflorescence Midge'
+      },
+      {
+        stageName: 'Fruit Development (Mar - May)',
+        durationDays: 'March to May',
+        keyActivities: 'Regular irrigation; calcium sprays to prevent fruit drop and cracking.',
+        recommendedNutrients: '13:0:45 + Calcium Nitrate (2 g/L each) — alternate sprays',
+        vulnerablePestsAndDiseases: 'Mango Fruit Fly (Bactrocera dorsalis), Fruit Anthracnose, Stone Weevil'
+      }
+    ],
+    majorPests: [
+      { name: 'Mango Hopper (Amritodus atkinsoni)', symptoms: 'Nymphs and adults suck sap from panicles; honeydew promotes sooty mold.', management: 'Imidacloprid 17.8 SL (0.5 ml/L) or Deltamethrin 2.8 EC (1 ml/L) before flowering.' },
+      { name: 'Mango Fruit Fly (Bactrocera dorsalis)', symptoms: 'Punctured ripe fruits; maggots inside; premature fruit drop.', management: 'Protein bait traps + Malathion 50 EC (2 ml/L) + sugar 1%.' }
+    ],
+    majorDiseases: [
+      { name: 'Powdery Mildew (Oidium mangiferae)', symptoms: 'White powdery coating on panicles and tender leaves; flower and fruit abortion.', management: 'Sulphur 80 WP (3 g/L) or Hexaconazole 5 EC (1 ml/L); spray at panicle emergence.' },
+      { name: 'Anthracnose (Colletotrichum gloeosporioides)', symptoms: 'Black irregular lesions on panicles, young fruits; post-harvest fruit rot.', management: 'Mancozeb 75 WP (2.5 g/L) alternated with Carbendazim 50 WP (1 g/L).' }
+    ],
+    fertigationSchedule: [
+      { stage: 'Post Harvest (Jun–Jul)', products: 'FYM + Urea + SSP', dose: '20 kg FYM + 500 g Urea + 750 g SSP per tree' },
+      { stage: 'Pre-flowering (Oct)', products: 'Potassium Sulphate + SSP', dose: '500 g SOP + 500 g SSP per tree' },
+      { stage: 'Fruit Growth (Mar)', products: 'Urea + MOP', dose: '250 g Urea + 250 g MOP per tree' }
+    ],
+    harvestingTips: [
+      'Harvest when skin shows yellow blush and stalk end gives slight pressure.',
+      'Use clippers leaving 5 cm stalk to prevent sap burn.',
+      'Pre-cool harvested fruits at 12–14°C for long-distance transport.'
+    ]
+  },
+  {
+    id: 'crop-garlic',
+    name: 'Garlic',
+    scientificName: 'Allium sativum',
+    localNameMr: 'लसूण (Garlic)',
+    category: 'Vegetable',
+    idealSoil: 'Well-drained sandy loam; heavy clay soils cause bulb deformity',
+    idealSoilPh: '6.0 – 7.5',
+    tempRangeC: '12°C – 24°C (Cool season crop)',
+    waterRequirementMm: '350 – 500 mm',
+    seedRatePerAcre: '200 – 250 kg (Cloves)',
+    spacing: '15 cm row × 8–10 cm clove',
+    durationDays: '120 – 150 Days',
+    yieldPerAcre: '25 – 40 Quintals / Acre',
+    criticalGrowthStages: [
+      {
+        stageName: 'Clove Establishment (0 - 20 DAS)',
+        durationDays: 'Day 0 to 20',
+        keyActivities: 'Clove treatment with fungicide; shallow irrigation; basal fertilizer.',
+        recommendedNutrients: 'DAP 50 kg + MOP 25 kg/acre (Basal)',
+        vulnerablePestsAndDiseases: 'Clove Rot (Fusarium), Basal Rot, Thrips'
+      },
+      {
+        stageName: 'Vegetative Growth (20 - 75 DAS)',
+        durationDays: 'Day 20 to 75',
+        keyActivities: 'Top dressing; weed management; irrigation every 8–10 days.',
+        recommendedNutrients: 'Urea 30 kg + Potassium Sulphate 20 kg/acre',
+        vulnerablePestsAndDiseases: 'Thrips, Purple Blotch (Alternaria porri), Stemphylium Blight'
+      },
+      {
+        stageName: 'Bulb Formation (75 - 130 DAS)',
+        durationDays: 'Day 75 to 130',
+        keyActivities: 'Irrigation critical; stop N application at bulb initiation; apply SOP.',
+        recommendedNutrients: '0:52:34 (MKP) 3 kg + 0:0:50 (SOP) 3 kg/acre/week foliar',
+        vulnerablePestsAndDiseases: 'Neck Rot (Botrytis), White Rot (Sclerotium), Leaf Blight'
+      }
+    ],
+    majorPests: [
+      { name: 'Thrips (Thrips tabaci)', symptoms: 'Silver streaks on leaves; severe infestation causes leaf tip drying.', management: 'Fipronil 5 SC (1 ml/L) or Spinosad 45 SC (0.3 ml/L).' }
+    ],
+    majorDiseases: [
+      { name: 'Purple Blotch (Alternaria porri)', symptoms: 'Water-soaked lesions turning purple with yellow border on leaves.', management: 'Mancozeb 75 WP (2.5 g/L) + Iprodione 50 WP (1.5 g/L).' },
+      { name: 'Basal Rot (Fusarium oxysporum)', symptoms: 'Yellowing, rotting at base of bulb; pink mycelial mat under bulb scales.', management: 'Clove treatment with Carbendazim 2 g/kg; drench with Copper Oxychloride 3 g/L.' }
+    ],
+    fertigationSchedule: [
+      { stage: 'Basal', products: 'DAP + MOP', dose: '50 kg + 25 kg/acre' },
+      { stage: '30 DAS', products: 'Urea + SOP', dose: '30 kg Urea + 20 kg SOP/acre' },
+      { stage: '60 DAS (Bulbing)', products: '0:52:34 + 0:0:50 Foliar', dose: '3 kg each/acre/week' }
+    ],
+    harvestingTips: [
+      'Harvest when 50–75% of foliage falls over naturally.',
+      'Cure garlic in shade for 3–4 weeks before storage.',
+      'Never wash bulbs before storage; moisture causes Fusarium rot.'
+    ]
+  },
+  {
+    id: 'crop-brinjal',
+    name: 'Brinjal / Eggplant',
+    scientificName: 'Solanum melongena',
+    localNameMr: 'वांगे (Brinjal)',
+    category: 'Vegetable',
+    idealSoil: 'Deep, well-drained loamy soil; tolerates wide range of soils',
+    idealSoilPh: '5.5 – 6.8',
+    tempRangeC: '22°C – 32°C (Sensitive to frost)',
+    waterRequirementMm: '500 – 700 mm',
+    seedRatePerAcre: '150 – 200 grams (Hybrid seedlings)',
+    spacing: '2.5–3 ft row × 1.5–2 ft plant',
+    durationDays: '120 – 160 Days',
+    yieldPerAcre: '10 – 20 Tonnes / Acre',
+    criticalGrowthStages: [
+      {
+        stageName: 'Transplanting & Establishment (0 - 20 DAT)',
+        durationDays: 'Day 0 to 20',
+        keyActivities: 'Drench transplants with Trichoderma + Pseudomonas; silver mulch on raised beds.',
+        recommendedNutrients: '12:61:0 + Humic Acid drip fertigation',
+        vulnerablePestsAndDiseases: 'Damping off, Cutworms, Shoot & Fruit Borer (early attack)'
+      },
+      {
+        stageName: 'Vegetative Phase (20 - 50 DAT)',
+        durationDays: 'Day 20 to 50',
+        keyActivities: 'Pheromone trap deployment for Leucinodes; regular irrigation.',
+        recommendedNutrients: '19:19:19 + Magnesium Sulphate 1 g/L',
+        vulnerablePestsAndDiseases: 'Shoot & Fruit Borer (Leucinodes orbonalis), Aphids, Jassids'
+      },
+      {
+        stageName: 'Flowering & Fruiting (50 - 130 DAT)',
+        durationDays: 'Day 50 to 130',
+        keyActivities: 'Spray Spinosad at first borer damage; pick fruits regularly.',
+        recommendedNutrients: '0:52:34 + Calcium Nitrate (Alternate weeks)',
+        vulnerablePestsAndDiseases: 'Shoot & Fruit Borer, Phomopsis Blight, Bacterial Wilt'
+      }
+    ],
+    majorPests: [
+      { name: 'Brinjal Shoot & Fruit Borer (Leucinodes orbonalis)', symptoms: 'Wilting growing shoots; bore holes in fruits with excreta.', management: 'Pheromone traps (5/acre) + Spinosad 45 SC (0.3 ml/L) or Emamectin Benzoate 5 SG (0.4 g/L).' },
+      { name: 'Whitefly (Bemisia tabaci)', symptoms: 'Yellowing and upward leaf curl; sooty mold; virus vector.', management: 'Imidacloprid 17.8 SL (0.5 ml/L) or Spiromesifen 22.9 SC (0.9 ml/L).' }
+    ],
+    majorDiseases: [
+      { name: 'Phomopsis Blight (Phomopsis vexans)', symptoms: 'Circular lesions on leaves and fruits; grey centre with dark border.', management: 'Mancozeb 75 WP (2.5 g/L) or Copper Oxychloride 50 WP (3 g/L).' },
+      { name: 'Bacterial Wilt (Ralstonia solanacearum)', symptoms: 'Rapid wilting of plant; slime test positive; brown discolouration in stem.', management: 'Drench with Copper Oxychloride (3 g/L) + Streptocycline (0.1 g/L).' }
+    ],
+    fertigationSchedule: [
+      { stage: '1st Month', products: '19:19:19 + MAP', dose: '3 kg 19:19:19 + 2 kg MAP/acre/week' },
+      { stage: '2nd Month (Flowering)', products: '0:52:34 + CaNO3', dose: '3 kg MKP + 4 kg CaN/acre/week' },
+      { stage: '3rd Month+', products: '0:0:50 + 13:0:45', dose: '4 kg SOP + 2 kg KNO3/acre/week' }
+    ],
+    harvestingTips: [
+      'Harvest fruits when glossy and firm; delayed picking causes bitterness.',
+      'Pick at regular 3–4 day intervals to sustain yield and size.',
+      'Harvest with stalk attached using sharp knife or secateurs.'
+    ]
+  },
+  {
+    id: 'crop-cauliflower',
+    name: 'Cauliflower',
+    scientificName: 'Brassica oleracea var. botrytis',
+    localNameMr: 'फुलकोबी (Cauliflower)',
+    category: 'Vegetable',
+    idealSoil: 'Deep, moist, well-drained fertile loamy soil with good organic matter',
+    idealSoilPh: '6.0 – 7.0',
+    tempRangeC: '14°C – 22°C (Best curd development in cool conditions)',
+    waterRequirementMm: '400 – 600 mm',
+    seedRatePerAcre: '100 – 150 grams',
+    spacing: '60 cm row × 45 cm plant',
+    durationDays: '80 – 120 Days (Variety dependent)',
+    yieldPerAcre: '6 – 10 Tonnes / Acre',
+    criticalGrowthStages: [
+      {
+        stageName: 'Nursery & Transplanting (0 - 25 DAT)',
+        durationDays: 'Day 0 to 25',
+        keyActivities: 'Raise nursery in protrays; transplant at 4–5 leaf stage; basal DAP application.',
+        recommendedNutrients: 'DAP 50 kg + MOP 25 kg/acre basal',
+        vulnerablePestsAndDiseases: 'Damping off, Cabbage Aphid, Diamond-back Moth (DBM)'
+      },
+      {
+        stageName: 'Vegetative & Curd Initiation (25 - 60 DAT)',
+        durationDays: 'Day 25 to 60',
+        keyActivities: 'First top dressing; foliar boron for curd quality; tie outer leaves over curd for blanching.',
+        recommendedNutrients: 'Urea 30 kg/acre + Boron 20% 1 g/L foliar',
+        vulnerablePestsAndDiseases: 'DBM (Plutella xylostella), Cabbage Looper, Black Rot'
+      }
+    ],
+    majorPests: [
+      { name: 'Diamond-back Moth (Plutella xylostella)', symptoms: 'Windows on leaves; severe infestation causes skeletonization.', management: 'Emamectin Benzoate 5 SG (0.4 g/L) or Spinosad 45 SC (0.3 ml/L); rotate with NSKE 5%.' },
+      { name: 'Cabbage Aphid (Brevicoryne brassicae)', symptoms: 'Grey waxy colonies on underside of leaves; curling.', management: 'Dimethoate 30 EC (1 ml/L) or Acetamiprid 20 SP (0.3 g/L).' }
+    ],
+    majorDiseases: [
+      { name: 'Black Rot (Xanthomonas campestris)', symptoms: 'V-shaped yellow lesions at leaf margins; blackened veins.', management: 'Copper Oxychloride 50 WP (3 g/L) + Streptocycline (0.1 g/L).' },
+      { name: 'Downy Mildew (Hyaloperonospora parasitica)', symptoms: 'Yellow angular spots on upper surface; white cottony growth below.', management: 'Metalaxyl + Mancozeb WP (2.5 g/L) or Dimethomorph 50 WP (1 g/L).' }
+    ],
+    fertigationSchedule: [
+      { stage: 'Basal', products: 'DAP + MOP', dose: '50 kg + 25 kg/acre' },
+      { stage: '30 DAT', products: 'Urea', dose: '30 kg/acre top dressing' },
+      { stage: 'Curd Initiation', products: 'Boron + Molybdenum foliar', dose: '1 g/L each' }
+    ],
+    harvestingTips: [
+      'Harvest when curd is compact, white, and firm before yellowing.',
+      'Cut with 3–4 outer guard leaves attached for market protection.',
+      'Morning harvest preferred; avoid evening harvest in humid conditions.'
+    ]
+  },
+  {
+    id: 'crop-okra',
+    name: 'Okra / Bhindi',
+    scientificName: 'Abelmoschus esculentus',
+    localNameMr: 'भेंडी (Okra / Bhindi)',
+    category: 'Vegetable',
+    idealSoil: 'Well-drained sandy loam to clay loam; responds well to organic manure',
+    idealSoilPh: '6.0 – 7.5',
+    tempRangeC: '25°C – 35°C (Warm season crop)',
+    waterRequirementMm: '350 – 500 mm',
+    seedRatePerAcre: '2 – 3 kg (Hybrid)',
+    spacing: '45–60 cm row × 20–25 cm plant',
+    durationDays: '55 – 70 Days (first harvest); continuous up to 150 days',
+    yieldPerAcre: '5 – 8 Tonnes / Acre',
+    criticalGrowthStages: [
+      {
+        stageName: 'Germination & Establishment (0 - 20 DAS)',
+        durationDays: 'Day 0 to 20',
+        keyActivities: 'Seed soaking in water 12 hr before sowing; basal fertilizer; weed management.',
+        recommendedNutrients: 'DAP 30 kg + MOP 20 kg/acre basal',
+        vulnerablePestsAndDiseases: 'Damping off, Whitefly (early YVMV vector)'
+      },
+      {
+        stageName: 'Vegetative & Flowering (20 - 55 DAS)',
+        durationDays: 'Day 20 to 55',
+        keyActivities: 'Top dress urea; spray for whitefly and jassid control (YVMV management).',
+        recommendedNutrients: 'Urea 25 kg/acre + 0:52:34 + Boron foliar',
+        vulnerablePestsAndDiseases: 'Yellow Vein Mosaic Virus (YVMV via Whitefly), Jassid, Shoot & Fruit Borer'
+      }
+    ],
+    majorPests: [
+      { name: 'Whitefly (Bemisia tabaci) — YVMV Vector', symptoms: 'Yellow vein mosaic pattern on leaves; stunted plants; no fruit set.', management: 'Imidacloprid 17.8 SL (0.5 ml/L); use YVMV-tolerant hybrids; rogue infected plants.' },
+      { name: 'Jassid (Amrasca biguttula)', symptoms: 'Leaf curl upward; yellow discolouration; plants become crinkled.', management: 'Acetamiprid 20 SP (0.3 g/L) or Thiamethoxam 25 WG (0.3 g/L).' }
+    ],
+    majorDiseases: [
+      { name: 'Yellow Vein Mosaic (YVMV Virus)', symptoms: 'Network of yellow veins on green leaf; complete yellowing; no fruits.', management: 'Use resistant/tolerant varieties (Arka Anamika, Varsha Uphar); control whitefly vector.' },
+      { name: 'Powdery Mildew (Erysiphe cichoracearum)', symptoms: 'White powdery coating on upper leaf surface in humid conditions.', management: 'Sulphur 80 WP (3 g/L) or Hexaconazole 5 EC (1 ml/L).' }
+    ],
+    fertigationSchedule: [
+      { stage: 'Basal', products: 'DAP + MOP', dose: '30 kg + 20 kg/acre' },
+      { stage: '25 DAS', products: 'Urea', dose: '25 kg/acre top dressing' },
+      { stage: 'Fruiting Stage', products: '0:52:34 + CaNO3 drip', dose: '2 kg each/acre/week' }
+    ],
+    harvestingTips: [
+      'Harvest pods at 4–6 cm length every 2–3 days; over-mature pods become fibrous.',
+      'Use sharp knife; wear gloves as trichomes cause skin irritation.',
+      'Harvest early morning for firmness and shelf life.'
+    ]
+  },
+  {
+    id: 'crop-mustard',
+    name: 'Mustard / Rapeseed',
+    scientificName: 'Brassica juncea',
+    localNameMr: 'मोहरी (Mustard)',
+    category: 'Pulse / Oilseed',
+    idealSoil: 'Well-drained loamy to sandy loam soil; good drainage essential',
+    idealSoilPh: '6.0 – 7.5',
+    tempRangeC: '10°C – 25°C (Cool dry season crop)',
+    waterRequirementMm: '200 – 400 mm',
+    seedRatePerAcre: '1.5 – 2 kg (Line sowing)',
+    spacing: '30–45 cm row × 10–15 cm plant',
+    durationDays: '110 – 130 Days',
+    yieldPerAcre: '6 – 10 Quintals / Acre',
+    criticalGrowthStages: [
+      {
+        stageName: 'Emergence & Early Growth (0 - 25 DAS)',
+        durationDays: 'Day 0 to 25',
+        keyActivities: 'Thin to one plant per station; basal fertilizer; weed control.',
+        recommendedNutrients: 'DAP 40 kg + Sulphur 30 kg/acre basal',
+        vulnerablePestsAndDiseases: 'Aphids (early), Downy Mildew, White Rust'
+      },
+      {
+        stageName: 'Vegetative & Stem Elongation (25 - 55 DAS)',
+        durationDays: 'Day 25 to 55',
+        keyActivities: 'First irrigation at rosette stage; top dress urea; monitor for aphids.',
+        recommendedNutrients: 'Urea 25 kg/acre; Boron 0.5 g/L foliar',
+        vulnerablePestsAndDiseases: 'Mustard Aphid (Lipaphis erysimi), Alternaria Blight'
+      },
+      {
+        stageName: 'Flowering & Pod Fill (55 - 110 DAS)',
+        durationDays: 'Day 55 to 110',
+        keyActivities: 'Critical irrigation at flowering and pod formation stages.',
+        recommendedNutrients: 'Potassium Sulphate 15 kg/acre + Boron 1 g/L',
+        vulnerablePestsAndDiseases: 'Mustard Aphid, Powdery Mildew, Pod Borer'
+      }
+    ],
+    majorPests: [
+      { name: 'Mustard Aphid (Lipaphis erysimi)', symptoms: 'Dense yellow colonies on growing tips; shoot curling; severe damage at flowering.', management: 'Dimethoate 30 EC (1 ml/L) or Oxydemeton Methyl 25 EC (1 ml/L).' }
+    ],
+    majorDiseases: [
+      { name: 'Alternaria Blight (Alternaria brassicae)', symptoms: 'Circular dark spots with concentric rings on leaves and pods; premature shedding.', management: 'Mancozeb 75 WP (2.5 g/L) or Iprodione 50 WP (1 g/L).' },
+      { name: 'White Rust (Albugo candida)', symptoms: 'White blister-like pustules on underside of leaves; distorted shoots.', management: 'Metalaxyl + Mancozeb WP (2.5 g/L).' }
+    ],
+    fertigationSchedule: [
+      { stage: 'Basal', products: 'DAP + Elemental Sulphur', dose: '40 kg DAP + 30 kg Sulphur/acre' },
+      { stage: '30 DAS', products: 'Urea', dose: '25 kg/acre top dressing' }
+    ],
+    harvestingTips: [
+      'Harvest when 75% of pods turn golden yellow.',
+      'Cut and bundle; thresh after 2–3 days of drying.',
+      'Seed moisture for safe storage is below 8%.'
+    ]
+  },
+  {
+    id: 'crop-sunflower',
+    name: 'Sunflower',
+    scientificName: 'Helianthus annuus',
+    localNameMr: 'सूर्यफूल (Sunflower)',
+    category: 'Pulse / Oilseed',
+    idealSoil: 'Deep, well-drained loamy soil; tap root system; avoid waterlogged areas',
+    idealSoilPh: '6.0 – 7.5',
+    tempRangeC: '20°C – 30°C (Sensitive to frost at seedling and flowering)',
+    waterRequirementMm: '500 – 700 mm',
+    seedRatePerAcre: '1.5 – 2 kg (Hybrid)',
+    spacing: '60–75 cm row × 20–30 cm plant',
+    durationDays: '90 – 110 Days',
+    yieldPerAcre: '6 – 12 Quintals / Acre',
+    criticalGrowthStages: [
+      {
+        stageName: 'Germination & Seedling (0 - 20 DAS)',
+        durationDays: 'Day 0 to 20',
+        keyActivities: 'Seed priming with water; basal fertilizer; thin to one plant.',
+        recommendedNutrients: '12:32:16 Complex 50 kg/acre basal',
+        vulnerablePestsAndDiseases: 'Downy Mildew, Cutworms, Leaf Eating Caterpillar'
+      },
+      {
+        stageName: 'Vegetative & Bud Formation (20 - 55 DAS)',
+        durationDays: 'Day 20 to 55',
+        keyActivities: 'Top dressing; earthing up; monitor for head borer.',
+        recommendedNutrients: 'Urea 25 kg + Boron 1 g/L foliar',
+        vulnerablePestsAndDiseases: 'Head Borer, Capitulum Borer, Alternaria Blight'
+      },
+      {
+        stageName: 'Flowering & Seed Filling (55 - 90 DAS)',
+        durationDays: 'Day 55 to 90',
+        keyActivities: 'Release bees for pollination; brush heads to assist cross-pollination.',
+        recommendedNutrients: '0:52:34 + 0:0:50 Foliar combination',
+        vulnerablePestsAndDiseases: 'Capitulum Borer, Sclerotinia Stem Rot, Bird Damage'
+      }
+    ],
+    majorPests: [
+      { name: 'Capitulum Borer (Homoescana atomosalis)', symptoms: 'Larvae bore into developing heads; severe yield loss.', management: 'Quinalphos 25 EC (2 ml/L) or Chlorpyrifos 20 EC (2 ml/L).' }
+    ],
+    majorDiseases: [
+      { name: 'Alternaria Leaf Spot (Alternaria helianthi)', symptoms: 'Dark brown circular spots with yellow halo on leaves and bracts.', management: 'Mancozeb 75 WP (2.5 g/L) or Iprodione 50 WP (1.5 g/L).' },
+      { name: 'Sclerotinia Stem Rot (Sclerotinia sclerotiorum)', symptoms: 'White cottony mycelium at stem base; plant wilts and dies.', management: 'Carbendazim 50 WP (1 g/L) stem drench; avoid excess moisture.' }
+    ],
+    fertigationSchedule: [
+      { stage: 'Basal', products: '12:32:16 Complex', dose: '50 kg/acre' },
+      { stage: '30 DAS', products: 'Urea + SOP', dose: '25 kg + 15 kg/acre' },
+      { stage: 'Flowering', products: 'Boron foliar', dose: '1 g/L (twice)' }
+    ],
+    harvestingTips: [
+      'Harvest when 80% of seeds are fully developed and backs of heads turn brownish-yellow.',
+      'Cut heads; dry in sun 3–4 days before threshing.',
+      'Oil content: 35–45%; store at less than 8% moisture.'
+    ]
+  },
+  {
+    id: 'crop-orange-citrus',
+    name: 'Orange / Citrus (Nagpur Mandarin)',
+    scientificName: 'Citrus reticulata',
+    localNameMr: 'नागपूर संत्रा (Nagpur Mandarin)',
+    category: 'Fruit & Horticulture',
+    idealSoil: 'Well-drained medium deep black cotton soil or sandy loam',
+    idealSoilPh: '6.0 – 7.5',
+    tempRangeC: '22°C – 35°C (Dry cool period required for flowering)',
+    waterRequirementMm: '1200 – 1500 mm',
+    seedRatePerAcre: '100 – 120 budded plants/acre (6 m × 6 m)',
+    spacing: '6 m × 6 m (Standard); 5 m × 5 m (High Density)',
+    durationDays: 'Perennial; commercial production from 3rd year',
+    yieldPerAcre: '4 – 8 Tonnes / Acre (Bearing stage)',
+    criticalGrowthStages: [
+      {
+        stageName: 'Mrig Bahar (Monsoon Flush — June-July)',
+        durationDays: 'June to July (Stress Release)',
+        keyActivities: 'Apply stress period (withhold water 60 days); heavy irrigation to induce Mrig Bahar flowering.',
+        recommendedNutrients: 'NPK 300:150:150 g/tree after stress release',
+        vulnerablePestsAndDiseases: 'Citrus Psylla (Diaphorina citri), Thrips, Leaf Miner'
+      },
+      {
+        stageName: 'Flowering & Fruit Set (Aug - Oct)',
+        durationDays: 'August to October',
+        keyActivities: 'Spray Planofix (NAA) at petal fall to reduce fruit drop; calcium sprays.',
+        recommendedNutrients: 'Boron 0.5 g/L + Calcium Nitrate 2 g/L foliar (monthly)',
+        vulnerablePestsAndDiseases: 'Citrus Canker (Xanthomonas axonopodis), Psylla (HLB vector)'
+      },
+      {
+        stageName: 'Fruit Growth & Colouring (Oct - Dec)',
+        durationDays: 'October to December',
+        keyActivities: 'Potassium application for colour and sugar; ethephon for degreening.',
+        recommendedNutrients: '13:0:45 (Potassium Nitrate) 2 g/L foliar + Magnesium Sulphate',
+        vulnerablePestsAndDiseases: 'Fruit Fly (Bactrocera dorsalis), Gummosis (Phytophthora), Sooty Mold'
+      }
+    ],
+    majorPests: [
+      { name: 'Citrus Psylla (Diaphorina citri) — HLB Vector', symptoms: 'Waxy secretions on new flushes; distorted young leaves; Huanglongbing (HLB greening disease) vector.', management: 'Imidacloprid 17.8 SL (0.5 ml/L) or Spirotetramat 15 OD (0.8 ml/L) at new flush stage.' },
+      { name: 'Citrus Leaf Miner (Phyllocnistis citrella)', symptoms: 'Silvery serpentine mines on young leaves; leaf curling.', management: 'Spinosad 45 SC (0.3 ml/L) or Abamectin 1.8 EC (0.5 ml/L).' }
+    ],
+    majorDiseases: [
+      { name: 'Citrus Canker (Xanthomonas axonopodis)', symptoms: 'Raised, corky, water-soaked lesions on leaves, fruits, and branches.', management: 'Copper Oxychloride 50 WP (3 g/L) + Streptocycline (0.1 g/L); prune infected parts.' },
+      { name: 'Gummosis (Phytophthora parasitica)', symptoms: 'Gum exuding from bark near root collar; bark darkening and rotting.', management: 'Metalaxyl + Mancozeb WP (2.5 g/L) soil drench + trunk painting with Bordeaux paste.' }
+    ],
+    fertigationSchedule: [
+      { stage: 'Post Stress Release (Jun)', products: 'NPK + FYM', dose: '300 g N: 150 g P: 150 g K per tree + 20 kg FYM' },
+      { stage: 'Fruit Development (Sep)', products: 'Urea + Muriate of Potash', dose: '150 g Urea + 150 g MOP per tree' },
+      { stage: 'Pre-harvest (Nov)', products: 'Potassium Nitrate + MgSO4 Foliar', dose: '2 g/L each monthly' }
+    ],
+    harvestingTips: [
+      'Harvest Nagpur mandarin November–January at full colour and sweetness.',
+      'Use ring cutters; do not pull fruit to avoid stem end damage.',
+      'Pre-cool at 5–8°C; wax coating extends shelf life significantly.'
+    ]
+  },
+  {
+    id: 'crop-lentil',
+    name: 'Lentil (Masoor Dal)',
+    scientificName: 'Lens culinaris',
+    localNameMr: 'मसूर (Lentil)',
+    category: 'Pulse / Oilseed',
+    idealSoil: 'Light sandy loam to loamy soil; well-drained; tolerates low fertility',
+    idealSoilPh: '6.0 – 8.0',
+    tempRangeC: '15°C – 25°C (Cool season Rabi crop)',
+    waterRequirementMm: '250 – 400 mm',
+    seedRatePerAcre: '15 – 20 kg',
+    spacing: '25–30 cm row × 5–10 cm plant',
+    durationDays: '100 – 120 Days',
+    yieldPerAcre: '5 – 8 Quintals / Acre',
+    criticalGrowthStages: [
+      {
+        stageName: 'Germination & Seedling (0 - 20 DAS)',
+        durationDays: 'Day 0 to 20',
+        keyActivities: 'Seed treatment with Rhizobium + Trichoderma; basal fertilizer; pre-emergence weed control.',
+        recommendedNutrients: 'DAP 25 kg/acre basal (low N as legume)',
+        vulnerablePestsAndDiseases: 'Seed rot, Aphid, Leaf Eating Caterpillar'
+      },
+      {
+        stageName: 'Vegetative & Flowering (20 - 70 DAS)',
+        durationDays: 'Day 20 to 70',
+        keyActivities: 'One irrigation at pre-flowering; spray for aphid and blight.',
+        recommendedNutrients: 'Sulphur 80 WP 3 g/L foliar; Boron 0.5 g/L',
+        vulnerablePestsAndDiseases: 'Aphid (Aphis craccivora), Stemphylium Blight, Rust'
+      },
+      {
+        stageName: 'Pod Fill & Maturity (70 - 110 DAS)',
+        durationDays: 'Day 70 to 110',
+        keyActivities: 'Withhold irrigation; harvest when 90% pods turn brown.',
+        recommendedNutrients: 'No fertilizer required at maturity stage',
+        vulnerablePestsAndDiseases: 'Pod Borer (Helicoverpa), Rust (Uromyces viciae-fabae)'
+      }
+    ],
+    majorPests: [
+      { name: 'Pea Aphid (Aphis craccivora)', symptoms: 'Colonies on stems and growing tips; honeydew; curled leaves.', management: 'Dimethoate 30 EC (1 ml/L) or Imidacloprid 17.8 SL (0.5 ml/L).' }
+    ],
+    majorDiseases: [
+      { name: 'Stemphylium Blight (Stemphylium botryosum)', symptoms: 'Oval tan necrotic lesions on leaves; premature defoliation in humid conditions.', management: 'Iprodione 50 WP (1.5 g/L) or Tebuconazole 250 EW (1 ml/L).' },
+      { name: 'Rust (Uromyces viciae-fabae)', symptoms: 'Chocolate brown pustules on leaves; defoliation in severe cases.', management: 'Mancozeb 75 WP (2.5 g/L) or Propiconazole 25 EC (1 ml/L).' }
+    ],
+    fertigationSchedule: [
+      { stage: 'Basal', products: 'DAP (no Urea needed — legume)', dose: '25 kg/acre' },
+      { stage: 'Pre-flowering', products: 'Sulphur foliar + Boron', dose: 'S 3 g/L + B 0.5 g/L' }
+    ],
+    harvestingTips: [
+      'Harvest when 90% pods turn brown; avoid over-ripening (shattering losses).',
+      'Thresh after 3–4 days of drying in sun.',
+      'Store at less than 10% moisture to prevent weevil damage.'
+    ]
   }
 ];
+

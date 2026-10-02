@@ -1,5 +1,5 @@
 import React from 'react';
-import { Target, Code2, ShieldCheck, Sprout } from 'lucide-react';
+import { Target, Code2, ShieldCheck, Sprout, User, Github, Linkedin, Mail } from 'lucide-react';
 import { Language } from '../types/agri';
 import { TRANSLATIONS } from '../data/translations';
 
@@ -47,7 +47,36 @@ export const AboutView: React.FC<AboutViewProps> = ({ language }) => {
         </p>
       </div>
 
-
+      {/* Developer Profile */}
+      <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-xs">
+        <div className="flex items-start sm:items-center gap-3 mb-4">
+          <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 flex items-center justify-center text-emerald-700 dark:text-emerald-300 shrink-0">
+            <User className="w-5 h-5" />
+          </div>
+          <div>
+            <h2 className="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white">
+              Developed By: Kashiling Kolekar
+            </h2>
+            <p className="text-xs font-medium text-emerald-600 dark:text-emerald-400 mt-0.5">
+              Python Developer | Machine Learning & Data Science | Full Stack Web Development
+            </p>
+          </div>
+        </div>
+        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
+          Final-year B.Tech candidate in AI & Data Science skilled in Python, ML pipelines, REST API architecture, and full-stack web development. Creator of the Agri Product Intelligence platform.
+        </p>
+        <div className="flex flex-wrap gap-3">
+          <a href="mailto:kolekarkashiling705@gmail.com" className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+            <Mail className="w-3.5 h-3.5" /> Email
+          </a>
+          <a href="https://linkedin.com/in/kashi-kolekar-6234a8368" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 text-xs font-semibold hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-colors border border-blue-200 dark:border-blue-800/50">
+            <Linkedin className="w-3.5 h-3.5" /> LinkedIn
+          </a>
+          <a href="https://github.com/kolekarkashiling" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors border border-slate-200 dark:border-slate-700">
+            <Github className="w-3.5 h-3.5" /> GitHub
+          </a>
+        </div>
+      </div>
 
       {/* Tech stack + compliance */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

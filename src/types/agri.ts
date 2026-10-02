@@ -17,6 +17,7 @@ export type FormulationType =
   | 'SL'  // Soluble Liquid Concentrate
   | 'SP'  // Soluble Powder
   | 'WSF' // Water Soluble Fertilizer
+  | 'WSG' // Water Soluble Granule
   | 'WSC' // Water Soluble Concentrate
   | 'WSP' // Water Soluble Powder
   | 'CS'  // Capsule Suspension
@@ -48,11 +49,19 @@ export interface AgriProduct {
     drench?: string;
     seedTreatment?: string;
   };
+  standardDose?: string;
+  standardUnit?: string;
+  defaultDosePerLitre?: number;
   mixingOrderRank: number; // 1: Water/Buffering -> 2: Adjuvants -> 3: WP/WDG -> 4: SC -> 5: EC -> 6: SL/WSF
   advantages: string[];
   limitations: string[];
   precautions: string[];
   isVerifiedLabel: boolean;
+  isCibRcRegistered?: boolean;
+  targetPestsOrDiseases?: string[];
+  phiDays?: number;
+  reentryIntervalHours?: number;
+  safetyPrecaution?: string;
   rainfastHours: number; // minimum dry hours needed after spray
   tempMinC: number;
   tempMaxC: number;
@@ -120,4 +129,4 @@ export interface ConditionEvaluationResult {
   bestApplicationWindow: string;
 }
 
-export type Language = 'en' | 'mr';
+export type Language = 'en' | 'mr' | 'hi';
