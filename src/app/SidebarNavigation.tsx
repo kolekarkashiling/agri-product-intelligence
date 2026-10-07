@@ -1,7 +1,8 @@
 import React from 'react';
 import {
   LayoutDashboard, FlaskConical, Layers, History, CloudSun,
-  BookOpen, ShieldCheck, ShieldAlert, Info, Sparkles, User, Globe, CalendarClock
+  BookOpen, ShieldCheck, ShieldAlert, Info, Sparkles, User, Globe, CalendarClock,
+  Camera, ScanLine
 } from 'lucide-react';
 import { Language } from '../types/agri';
 import { UserRole } from '../types/database.types';
@@ -24,6 +25,7 @@ interface SidebarNavigationProps {
   setLanguage: (lang: Language) => void;
   role: UserRole;
   selectedTankCount?: number;
+  onOpenScanner?: () => void;
 }
 
 export function SidebarNavigation({
@@ -32,7 +34,8 @@ export function SidebarNavigation({
   language,
   setLanguage,
   role,
-  selectedTankCount = 0
+  selectedTankCount = 0,
+  onOpenScanner
 }: SidebarNavigationProps) {
   const t = TRANSLATIONS[language];
 
@@ -72,20 +75,38 @@ export function SidebarNavigation({
           </div>
         </div>
 
-        {/* Primary Action Button */}
-        <button
-          onClick={() => setCurrentTab('mix_analyzer')}
-          className="
-            mb-5 w-full flex items-center justify-center gap-3 px-3 py-3.5 rounded-2xl
-            bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500
-            text-white font-black text-xs shadow-lg shadow-emerald-950/20
-            transition-all duration-200 hover:scale-102 active:scale-98 overflow-hidden
-          "
-          title="New Tank Mix"
-        >
-          <Sparkles className="w-5 h-5 shrink-0" />
-          <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">{t.nav_new_tank || 'New Tank Mix'}</span>
-        </button>
+        {/* Primary Action Buttons */}
+        <div className="space-y-2 mb-4">
+          <button
+            onClick={() => setCurrentTab('mix_analyzer')}
+            className="
+              w-full flex items-center justify-center gap-3 px-3 py-3 rounded-2xl
+              bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500
+              text-white font-black text-xs shadow-lg shadow-emerald-950/20
+              transition-all duration-200 hover:scale-102 active:scale-98 overflow-hidden
+            "
+            title="New Tank Mix"
+          >
+            <Sparkles className="w-5 h-5 shrink-0" />
+            <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">{t.nav_new_tank || 'New Tank Mix'}</span>
+          </button>
+
+          {onOpenScanner && (
+            <button
+              onClick={onOpenScanner}
+              className="
+                w-full flex items-center justify-center gap-3 px-3 py-2.5 rounded-2xl
+                bg-indigo-600/15 hover:bg-indigo-600 text-indigo-600 dark:text-indigo-400 hover:text-white
+                border border-indigo-500/30 font-black text-xs
+                transition-all duration-200 hover:scale-102 active:scale-98 overflow-hidden
+              "
+              title="Scan Bottle Label with AI"
+            >
+              <Camera className="w-4 h-4 shrink-0" />
+              <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">Scan Bottle AI</span>
+            </button>
+          )}
+        </div>
 
         {/* Navigation Items */}
         <nav className="flex-1 space-y-1">
@@ -166,38 +187,70 @@ export function SidebarNavigation({
       </aside>
 
       {/* ── Mobile Bottom Navigation Bar (Fixed) ─────────────────── */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 px-3 py-2 flex items-center justify-around">
-        {[
-          { id: 'dashboard' as NavTab, label: t.nav_dashboard || 'Home', icon: LayoutDashboard },
-          { id: 'mix_analyzer' as NavTab, label: t.nav_mix_analyzer?.split(' ')[0] || 'Tank', icon: FlaskConical, badge: selectedTankCount > 0 ? selectedTankCount : undefined },
-          { id: 'products' as NavTab, label: language === 'hi' ? 'उत्पाद' : language === 'mr' ? 'उत्पादने' : 'Products', icon: Layers },
-          { id: 'admin' as NavTab, label: language === 'hi' ? 'प्रशासन' : language === 'mr' ? 'प्रशासन' : 'Admin', icon: ShieldAlert },
-          { id: 'about' as NavTab, label: language === 'hi' ? 'बारे में' : language === 'mr' ? 'माहिती' : 'About', icon: Info }
-        ].map((item) => {
-          const Icon = item.icon;
-          const isActive = currentTab === item.id;
-          return (
-            <button
-              key={item.id}
-              onClick={() => setCurrentTab(item.id)}
-              className={`
-                flex flex-col items-center gap-1 p-1.5 rounded-xl transition-all relative
-                ${isActive ? 'text-emerald-500 font-bold' : 'text-slate-500 dark:text-slate-400 font-medium'}
-              `}
-            >
-              <div className="relative">
-                <Icon className="w-5 h-5" />
-                {item.badge !== undefined && (
-                  <span className="absolute -top-1 -right-2 w-4 h-4 rounded-full bg-emerald-500 text-white text-[9px] font-black flex items-center justify-center">
-                    {item.badge}
-                  </span>
-                )}
-              </div>
-              <span className="text-[10px]">{item.label}</span>
-            </button>
-          );
-        })}
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 px-2 py-1.5 flex items-center justify-around">
+        <button
+          onClick={() => setCurrentTab('dashboard')}
+          className={`flex flex-col items-center gap-0.5 p-1 rounded-xl transition-all ${
+            currentTab === 'dashboard' ? 'text-emerald-500 font-bold' : 'text-slate-500 dark:text-slate-400'
+          }`}
+        >
+          <LayoutDashboard className="w-5 h-5" />
+          <span className="text-[10px]">{t.nav_dashboard || 'Home'}</span>
+        </button>
+
+        <button
+          onClick={() => setCurrentTab('mix_analyzer')}
+          className={`flex flex-col items-center gap-0.5 p-1 rounded-xl transition-all relative ${
+            currentTab === 'mix_analyzer' ? 'text-emerald-500 font-bold' : 'text-slate-500 dark:text-slate-400'
+          }`}
+        >
+          <div className="relative">
+            <FlaskConical className="w-5 h-5" />
+            {selectedTankCount > 0 && (
+              <span className="absolute -top-1 -right-2 w-4 h-4 rounded-full bg-emerald-500 text-white text-[9px] font-black flex items-center justify-center">
+                {selectedTankCount}
+              </span>
+            )}
+          </div>
+          <span className="text-[10px]">{t.nav_mix_analyzer?.split(' ')[0] || 'Tank'}</span>
+        </button>
+
+        {/* Center Prominent Scan Button for Mobile Farmers */}
+        {onOpenScanner && (
+          <button
+            onClick={onOpenScanner}
+            className="-mt-5 flex flex-col items-center gap-1 group"
+          >
+            <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-emerald-600 to-teal-500 text-white flex items-center justify-center shadow-lg shadow-emerald-950/40 border-2 border-white dark:border-slate-900 group-active:scale-90 transition-transform">
+              <Camera className="w-6 h-6" />
+            </div>
+            <span className="text-[9px] font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-tighter">
+              Scan
+            </span>
+          </button>
+        )}
+
+        <button
+          onClick={() => setCurrentTab('products')}
+          className={`flex flex-col items-center gap-0.5 p-1 rounded-xl transition-all ${
+            currentTab === 'products' ? 'text-emerald-500 font-bold' : 'text-slate-500 dark:text-slate-400'
+          }`}
+        >
+          <Layers className="w-5 h-5" />
+          <span className="text-[10px]">{language === 'hi' ? 'उत्पाद' : language === 'mr' ? 'उत्पादने' : 'Products'}</span>
+        </button>
+
+        <button
+          onClick={() => setCurrentTab('about')}
+          className={`flex flex-col items-center gap-0.5 p-1 rounded-xl transition-all ${
+            currentTab === 'about' ? 'text-emerald-500 font-bold' : 'text-slate-500 dark:text-slate-400'
+          }`}
+        >
+          <Info className="w-5 h-5" />
+          <span className="text-[10px]">{language === 'hi' ? 'बारे में' : language === 'mr' ? 'माहिती' : 'About'}</span>
+        </button>
       </div>
     </>
   );
 }
+

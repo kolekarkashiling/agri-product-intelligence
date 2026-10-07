@@ -11,14 +11,18 @@ import { CropGuideView } from './components/CropGuideView';
 import { ScheduleGeneratorView } from './components/ScheduleGeneratorView';
 import { AboutView } from './components/AboutView';
 import { DisclaimerBanner } from './components/DisclaimerBanner';
+import { ProductScannerModal } from './components/ProductScannerModal';
+import { ProductDetailsModal } from './components/ProductDetailsModal';
 import { useAuth } from './hooks/useAuth';
 import { SavedAnalysisComplete } from './services/analysis.service';
-import { ArrowRight, Leaf, Sparkles } from 'lucide-react';
+import { ArrowRight, Leaf, Sparkles, Camera } from 'lucide-react';
 
 export function App() {
   const [currentTab, setCurrentTab] = useState<NavTab>('dashboard');
   const [language, setLanguage] = useState<Language>('en');
   const [selectedProducts, setSelectedProducts] = useState<AgriProduct[]>([]);
+  const [isScannerOpen, setIsScannerOpen] = useState<boolean>(false);
+  const [inspectedProduct, setInspectedProduct] = useState<AgriProduct | null>(null);
   const { role, user, profile, switchRole } = useAuth();
 
   const toggleSelectProduct = (product: AgriProduct) => {
@@ -40,6 +44,17 @@ export function App() {
 
   const handleReopenAnalysis = (analysis: SavedAnalysisComplete) => {
     // Navigate to Tank Mix Analyzer
+    setCurrentTab('mix_analyzer');
+  };
+
+  const handleScannedProductSelect = (product: AgriProduct) => {
+    if (!selectedProducts.some((p) => p.id === product.id)) {
+      if (selectedProducts.length >= 8) {
+        alert('Spray tank limit is 8 products.');
+        return;
+      }
+      setSelectedProducts((prev) => [...prev, product]);
+    }
     setCurrentTab('mix_analyzer');
   };
 
@@ -65,6 +80,7 @@ export function App() {
           setLanguage={setLanguage}
           role={role}
           selectedTankCount={selectedProducts.length}
+          onOpenScanner={() => setIsScannerOpen(true)}
         />
       </div>
 
@@ -79,7 +95,18 @@ export function App() {
             </span>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5">
+            {/* Quick AI Scanner Button */}
+            <button
+              onClick={() => setIsScannerOpen(true)}
+              className="btn-agri text-xs py-1.5 px-3 flex items-center gap-1.5 shadow-sm bg-indigo-600 hover:bg-indigo-500"
+              title="Point camera at bottle to scan"
+            >
+              <Camera className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Scan Bottle AI</span>
+              <span className="sm:hidden">Scan</span>
+            </button>
+
             {selectedProducts.length > 0 && currentTab !== 'mix_analyzer' && (
               <button
                 onClick={() => setCurrentTab('mix_analyzer')}
@@ -107,6 +134,7 @@ export function App() {
               onViewConditionAnalyzer={() => setCurrentTab('condition_analyzer')}
               onViewCropGuide={() => setCurrentTab('crop_guide')}
               onReopenAnalysis={handleReopenAnalysis}
+              onOpenScanner={() => setIsScannerOpen(true)}
             />
           )}
 
@@ -128,6 +156,7 @@ export function App() {
               selectedProductIds={selectedProducts.map((p) => p.id)}
               onToggleSelect={toggleSelectProduct}
               onAnalyzeTank={() => setCurrentTab('mix_analyzer')}
+              onOpenScanner={() => setIsScannerOpen(true)}
             />
           )}
 
@@ -182,6 +211,24 @@ export function App() {
           </div>
         )}
 
+        {/* Global Product Scanner Modal */}
+        <ProductScannerModal
+          isOpen={isScannerOpen}
+          onClose={() => setIsScannerOpen(false)}
+          language={language}
+          onSelectProductForTank={handleScannedProductSelect}
+          onViewProductDetails={(prod) => setInspectedProduct(prod)}
+        />
+
+        {/* Product Details Modal (for deep inspection) */}
+        {inspectedProduct && (
+          <ProductDetailsModal
+            product={inspectedProduct}
+            onClose={() => setInspectedProduct(null)}
+            language={language}
+          />
+        )}
+
         {/* Footer */}
         <footer className="border-t border-slate-200 dark:border-white/10 py-4 glass-navbar text-center text-xs text-slate-500 relative z-10">
           <div className="flex items-center justify-center gap-1.5 font-bold text-slate-700 dark:text-slate-300 mb-0.5">
@@ -196,3 +243,4 @@ export function App() {
 }
 
 export default App;
+

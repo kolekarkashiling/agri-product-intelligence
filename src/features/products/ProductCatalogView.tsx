@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Filter, Sparkles, X, Leaf, ShieldCheck, TrendingUp, FlaskConical, Plus } from 'lucide-react';
+import { Search, Filter, Sparkles, X, Leaf, ShieldCheck, TrendingUp, FlaskConical, Plus, Camera, ScanLine } from 'lucide-react';
 import { AgriProduct, Language } from '../../types/agri';
 import { ProductCard } from '../../components/ProductCard';
 import { ProductDetailsModal } from '../../components/ProductDetailsModal';
@@ -12,13 +12,15 @@ interface ProductCatalogViewProps {
   selectedProductIds: string[];
   onToggleSelect: (product: AgriProduct) => void;
   onAnalyzeTank: () => void;
+  onOpenScanner?: () => void;
 }
 
 export function ProductCatalogView({
   language,
   selectedProductIds,
   onToggleSelect,
-  onAnalyzeTank
+  onAnalyzeTank,
+  onOpenScanner
 }: ProductCatalogViewProps) {
   const t = TRANSLATIONS[language];
   const { products, loading, category, setCategory, searchQuery, setSearchQuery } = useProducts();
@@ -41,8 +43,19 @@ export function ProductCatalogView({
       {/* ── Search & Filter Hero Banner ─────────────────────────── */}
       <div className="bg-gradient-to-br from-emerald-950 via-slate-900 to-teal-950 border border-emerald-500/20 rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
         <div className="relative z-10 max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-300 text-xs font-bold mb-3 border border-emerald-500/20">
-            <ShieldCheck className="w-3.5 h-3.5" /> FCO 1985 & CIB-RC Registered Inputs Master
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-300 text-xs font-bold border border-emerald-500/20">
+              <ShieldCheck className="w-3.5 h-3.5" /> FCO 1985 & CIB-RC Registered Inputs Master
+            </div>
+            {onOpenScanner && (
+              <button
+                onClick={onOpenScanner}
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white text-xs font-black shadow-md transition-all active:scale-95"
+              >
+                <Camera className="w-3.5 h-3.5" />
+                <span>AI Bottle Scanner</span>
+              </button>
+            )}
           </div>
           <h1 className="text-2xl sm:text-4xl font-black">
             Agricultural Product Directory
@@ -51,22 +64,35 @@ export function ProductCatalogView({
             Search authorized water-soluble fertilizers, fungicides, insecticides, micronutrients and adjuvants.
           </p>
 
-          {/* Search Box */}
-          <div className="mt-5 relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-emerald-500" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search by brand, active ingredient, NPK ratio, or target pest..."
-              className="w-full pl-12 pr-10 py-3.5 rounded-2xl bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder:text-slate-400 text-sm font-semibold border-2 border-transparent focus:border-emerald-500 focus:outline-none shadow-xl"
-            />
-            {searchQuery && (
+          {/* Search Box & Quick Scan */}
+          <div className="mt-5 flex flex-col sm:flex-row items-stretch gap-2.5">
+            <div className="relative flex-1">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-emerald-500" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search by brand, active ingredient, NPK ratio, or target pest..."
+                className="w-full pl-12 pr-10 py-3.5 rounded-2xl bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder:text-slate-400 text-sm font-semibold border-2 border-transparent focus:border-emerald-500 focus:outline-none shadow-xl"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 p-1 rounded-lg text-slate-400 hover:text-white"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+
+            {onOpenScanner && (
               <button
-                onClick={() => setSearchQuery('')}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 p-1 rounded-lg text-slate-400 hover:text-white"
+                onClick={onOpenScanner}
+                className="btn-agri px-5 py-3.5 text-xs flex items-center justify-center gap-2 shadow-xl whitespace-nowrap bg-emerald-600 hover:bg-emerald-500"
+                title="Scan any pesticide or fertilizer bottle"
               >
-                <X className="w-4 h-4" />
+                <ScanLine className="w-4 h-4" />
+                <span>Scan Label</span>
               </button>
             )}
           </div>
