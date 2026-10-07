@@ -181,6 +181,7 @@ export function App() {
               currentRole={role}
               userEmail={user?.email || undefined}
               onSwitchRole={switchRole}
+              onOpenScanner={() => setIsScannerOpen(true)}
             />
           )}
 

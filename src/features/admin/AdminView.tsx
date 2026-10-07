@@ -15,9 +15,10 @@ interface AdminViewProps {
   currentRole: UserRole;
   userEmail?: string;
   onSwitchRole: (role: UserRole) => void;
+  onOpenScanner?: () => void;
 }
 
-export function AdminView({ currentRole, userEmail, onSwitchRole }: AdminViewProps) {
+export function AdminView({ currentRole, userEmail, onSwitchRole, onOpenScanner }: AdminViewProps) {
   const [activeTab, setActiveTab] = useState<'products' | 'rules' | 'audit_logs' | 'roles'>('products');
   const [products, setProducts] = useState<AgriProduct[]>([]);
   const [rules, setRules] = useState<CompatibilityRule[]>([]);
@@ -183,8 +184,9 @@ export function AdminView({ currentRole, userEmail, onSwitchRole }: AdminViewPro
             <h3 className="font-bold text-base text-slate-900 dark:text-white">Registered Inputs Master</h3>
             <div className="flex gap-2">
               <button
-                onClick={() => alert('Check out scripts/llm_label_parser.py to see how this AI integration works!')}
+                onClick={onOpenScanner ? onOpenScanner : () => {}}
                 className="btn-agri bg-indigo-600 hover:bg-indigo-700 shadow-indigo-500/20 px-4 py-2 text-xs flex items-center gap-1.5"
+                title="Scan label or upload image to auto-extract product"
               >
                 <FileText className="w-4 h-4" /> Auto-Extract via AI
               </button>
