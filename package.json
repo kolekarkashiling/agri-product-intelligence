@@ -6,26 +6,24 @@
   "scripts": {
     "dev": "vite --port 3000 --host",
     "backend": "backend\\.venv\\Scripts\\python.exe -m uvicorn backend.main:app --host 127.0.0.1 --port 8000 --reload --reload-dir backend",
-    "build": "vite build",
+    "build": "node ./node_modules/vite/bin/vite.js build",
     "test": "tsx tests/compatibility.test.ts",
     "preview": "vite preview"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.116.0",
-    "clsx": "^2.1.1",
-    "lucide-react": "^0.475.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "tailwind-merge": "^2.6.0"
-  },
-  "devDependencies": {
     "@types/node": "^22.10.1",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
+    "clsx": "^2.1.1",
     "dotenv": "^18.0.0",
+    "lucide-react": "^0.475.0",
     "postcss": "^8.4.49",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^2.6.0",
     "tailwindcss": "^3.4.17",
     "tsx": "^4.23.13",
     "typescript": "^5.7.2",
