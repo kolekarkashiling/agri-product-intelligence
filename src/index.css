@@ -157,21 +157,7 @@
   }
   .scrollbar-none::-webkit-scrollbar { display: none; }
 
-  /* Stagger animation delays */
-  .stagger-1 { animation-delay: 0.05s; }
-  .stagger-2 { animation-delay: 0.10s; }
-  .stagger-3 { animation-delay: 0.15s; }
-  .stagger-4 { animation-delay: 0.20s; }
-  .stagger-5 { animation-delay: 0.25s; }
-  .stagger-6 { animation-delay: 0.30s; }
-  .stagger-7 { animation-delay: 0.35s; }
-  .stagger-8 { animation-delay: 0.40s; }
-  .stagger-9 { animation-delay: 0.45s; }
-  .stagger-10 { animation-delay: 0.50s; }
-  .stagger-11 { animation-delay: 0.55s; }
-  .stagger-12 { animation-delay: 0.60s; }
-
-  /* Staggered items start hidden */
+  /* Stagger animation base with fadeInUp */
   .stagger-1,
   .stagger-2,
   .stagger-3,
@@ -184,9 +170,21 @@
   .stagger-10,
   .stagger-11,
   .stagger-12 {
-    opacity: 0;
-    animation-fill-mode: forwards;
+    animation: fadeInUp 0.5s var(--transition-smooth) both;
   }
+
+  .stagger-1 { animation-delay: 0.04s; }
+  .stagger-2 { animation-delay: 0.08s; }
+  .stagger-3 { animation-delay: 0.12s; }
+  .stagger-4 { animation-delay: 0.16s; }
+  .stagger-5 { animation-delay: 0.20s; }
+  .stagger-6 { animation-delay: 0.24s; }
+  .stagger-7 { animation-delay: 0.28s; }
+  .stagger-8 { animation-delay: 0.32s; }
+  .stagger-9 { animation-delay: 0.36s; }
+  .stagger-10 { animation-delay: 0.40s; }
+  .stagger-11 { animation-delay: 0.44s; }
+  .stagger-12 { animation-delay: 0.48s; }
 
   /* Tab content transition */
   .tab-content-enter {
