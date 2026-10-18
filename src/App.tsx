@@ -13,9 +13,10 @@ import { AboutView } from './components/AboutView';
 import { DisclaimerBanner } from './components/DisclaimerBanner';
 import { ProductScannerModal } from './components/ProductScannerModal';
 import { ProductDetailsModal } from './components/ProductDetailsModal';
+import { AnimatedBackground } from './components/AnimatedBackground';
 import { useAuth } from './hooks/useAuth';
 import { SavedAnalysisComplete } from './services/analysis.service';
-import { ArrowRight, Leaf, Sparkles, Camera } from 'lucide-react';
+import { ArrowRight, Leaf, Sparkles, Camera, Compass } from 'lucide-react';
 
 export function App() {
   const [currentTab, setCurrentTab] = useState<NavTab>('dashboard');
@@ -60,16 +61,8 @@ export function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col lg:flex-row relative overflow-hidden transition-colors duration-500">
-      {/* Background Particles */}
-      <div className="particle-field hidden dark:block pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <div key={i} className="particle" style={{
-            '--x': `${Math.random() * 100}%`,
-            '--delay': `${Math.random() * 5}s`,
-            '--duration': `${5 + Math.random() * 5}s`
-          } as React.CSSProperties} />
-        ))}
-      </div>
+      {/* Dynamic Animated Ambient Background */}
+      <AnimatedBackground variant="subtle" className="opacity-40" />
 
       {/* ── Desktop Sidebar & Mobile Bottom Navigation ──────── */}
       <div className="relative z-20">

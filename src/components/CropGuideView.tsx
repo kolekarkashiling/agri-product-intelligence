@@ -105,10 +105,10 @@ export const CropGuideView: React.FC<CropGuideViewProps> = ({ language }) => {
 
       {/* Crops Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {filteredCrops.map((crop) => (
+        {filteredCrops.map((crop, idx) => (
           <div
             key={crop.id}
-            className="rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 p-5 sm:p-6 shadow-xs hover:shadow-md transition-all flex flex-col justify-between"
+            className={`rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 p-5 sm:p-6 shadow-xs hover-glow-card transition-all duration-300 flex flex-col justify-between group stagger-${Math.min(idx + 1, 8)}`}
           >
             <div>
               {/* Header Category Badge */}

@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { Search, Filter, Sparkles, X, Leaf, ShieldCheck, TrendingUp, FlaskConical, Plus, Camera, ScanLine } from 'lucide-react';
+import {
+  Search, Filter, Sparkles, X, Leaf, ShieldCheck, TrendingUp,
+  FlaskConical, Plus, Camera, ScanLine, Sprout, Wheat, Bug, Droplets, Layers, ShieldAlert
+} from 'lucide-react';
 import { AgriProduct, Language } from '../../types/agri';
 import { ProductCard } from '../../components/ProductCard';
 import { ProductDetailsModal } from '../../components/ProductDetailsModal';
@@ -27,15 +30,15 @@ export function ProductCatalogView({
   const [activeDetailProduct, setActiveDetailProduct] = useState<AgriProduct | null>(null);
 
   const categoryFilters = [
-    { id: 'all', label: t.filter_all, emoji: '🌿' },
-    { id: 'fertilizer', label: t.filter_fertilizer, emoji: '🌱' },
-    { id: 'micronutrient', label: t.filter_micronutrient, emoji: '⚗️' },
-    { id: 'fungicide', label: t.filter_fungicide, emoji: '🔵' },
-    { id: 'insecticide', label: t.filter_insecticide, emoji: '🛡️' },
-    { id: 'herbicide', label: t.filter_herbicide, emoji: '🌾' },
-    { id: 'pgr', label: t.filter_pgr, emoji: '🧬' },
-    { id: 'adjuvant', label: t.filter_adjuvant, emoji: '💧' },
-    { id: 'biostimulant', label: t.filter_biostimulant, emoji: '✨' },
+    { id: 'all', label: t.filter_all, icon: Layers },
+    { id: 'fertilizer', label: t.filter_fertilizer, icon: Sprout },
+    { id: 'micronutrient', label: t.filter_micronutrient, icon: FlaskConical },
+    { id: 'fungicide', label: t.filter_fungicide, icon: ShieldAlert },
+    { id: 'insecticide', label: t.filter_insecticide, icon: Bug },
+    { id: 'herbicide', label: t.filter_herbicide, icon: Wheat },
+    { id: 'pgr', label: t.filter_pgr, icon: TrendingUp },
+    { id: 'adjuvant', label: t.filter_adjuvant, icon: Droplets },
+    { id: 'biostimulant', label: t.filter_biostimulant, icon: Sparkles },
   ];
 
   return (
@@ -106,19 +109,20 @@ export function ProductCatalogView({
         </span>
         {categoryFilters.map((cat) => {
           const isActive = category === cat.id;
+          const Icon = cat.icon;
           return (
             <button
               key={cat.id}
               onClick={() => setCategory(cat.id)}
               className={`
-                shrink-0 px-3.5 py-2 rounded-2xl text-xs font-bold flex items-center gap-1.5 transition-all
+                shrink-0 px-3.5 py-2 rounded-2xl text-xs font-bold flex items-center gap-1.5 transition-all duration-200 active:scale-95
                 ${isActive
-                  ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-md'
-                  : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800'
+                  ? 'bg-emerald-600 dark:bg-emerald-500 text-white shadow-md shadow-emerald-950/20 scale-105'
+                  : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 hover:scale-102'
                 }
               `}
             >
-              <span>{cat.emoji}</span>
+              <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-white' : 'text-emerald-500'}`} />
               <span>{cat.label}</span>
             </button>
           );

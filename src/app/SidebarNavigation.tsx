@@ -119,21 +119,21 @@ export function SidebarNavigation({
                 key={item.id}
                 onClick={() => setCurrentTab(item.id)}
                 className={`
-                  w-full flex items-center justify-between px-3 py-3 rounded-2xl text-xs font-bold transition-all overflow-hidden
+                  w-full flex items-center justify-between px-3 py-3 rounded-2xl text-xs font-bold transition-all duration-200 overflow-hidden active:scale-95
                   ${isActive
-                    ? 'bg-emerald-500 text-white shadow-sm'
-                    : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'
+                    ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-md shadow-emerald-950/20 scale-[1.02]'
+                    : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white hover:translate-x-1'
                   }
                 `}
                 title={item.label}
               >
                 <div className="flex items-center gap-4 shrink-0">
-                  <Icon className={`w-6 h-6 shrink-0 ${isActive ? 'text-white' : 'text-slate-400'}`} />
+                  <Icon className={`w-6 h-6 shrink-0 transition-transform duration-200 ${isActive ? 'text-white scale-110' : 'text-slate-400'}`} />
                   <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">{item.label}</span>
                 </div>
 
                 {item.badge !== undefined && (
-                  <span className={`opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-2 py-0.5 rounded-full text-[10px] font-black shrink-0 ${isActive ? 'bg-white text-emerald-600' : 'bg-emerald-500 text-white'}`}>
+                  <span className={`opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-2 py-0.5 rounded-full text-[10px] font-black shrink-0 badge-pop ${isActive ? 'bg-white text-emerald-700' : 'bg-emerald-500 text-white'}`}>
                     {item.badge}
                   </span>
                 )}

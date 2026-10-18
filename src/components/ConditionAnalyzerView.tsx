@@ -272,7 +272,7 @@ export const ConditionAnalyzerView: React.FC<ConditionAnalyzerViewProps> = ({ la
         <div className="lg:col-span-5 space-y-5">
           {/* Suitability Hero Result Card */}
           <div
-            className={`rounded-3xl border p-6 sm:p-7 shadow-md transition-all ${
+            className={`rounded-3xl border p-6 sm:p-7 shadow-md hover-glow-card transition-all duration-300 ${
               evaluation.overallSuitability === 'best'
                 ? 'bg-emerald-500/10 dark:bg-emerald-950/40 border-emerald-300 dark:border-emerald-800'
                 : evaluation.overallSuitability === 'suitable'

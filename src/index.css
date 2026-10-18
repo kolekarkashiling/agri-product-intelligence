@@ -166,8 +166,12 @@
   .stagger-6 { animation-delay: 0.30s; }
   .stagger-7 { animation-delay: 0.35s; }
   .stagger-8 { animation-delay: 0.40s; }
+  .stagger-9 { animation-delay: 0.45s; }
+  .stagger-10 { animation-delay: 0.50s; }
+  .stagger-11 { animation-delay: 0.55s; }
+  .stagger-12 { animation-delay: 0.60s; }
 
-  /* Both staggered items start hidden */
+  /* Staggered items start hidden */
   .stagger-1,
   .stagger-2,
   .stagger-3,
@@ -175,7 +179,11 @@
   .stagger-5,
   .stagger-6,
   .stagger-7,
-  .stagger-8 {
+  .stagger-8,
+  .stagger-9,
+  .stagger-10,
+  .stagger-11,
+  .stagger-12 {
     opacity: 0;
     animation-fill-mode: forwards;
   }
@@ -482,9 +490,73 @@
   @apply opacity-100 scale-100;
 }
 
-/* ─── Page transition wrapper ────────────────────────────────── */
-.page-transition {
-  animation: fadeInUp 0.4s var(--transition-smooth) both;
+/* ─── UI/UX Pro Max Dynamic Animation & Micro-interactions ───── */
+@keyframes radarSweep {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulseRing {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(27, 166, 155, 0.6); }
+  70% { transform: scale(1); box-shadow: 0 0 0 12px rgba(27, 166, 155, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(27, 166, 155, 0); }
+}
+
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(0.5deg); }
+}
+
+.animate-float-gentle {
+  animation: floatGentle 5s ease-in-out infinite;
+}
+
+.animate-radar {
+  animation: radarSweep 4s linear infinite;
+}
+
+.pulse-ring-beacon {
+  animation: pulseRing 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Interactive Card with Smooth Spring Elevation */
+.hover-glow-card {
+  transition: transform 0.3s var(--transition-spring), box-shadow 0.3s var(--transition-smooth), border-color 0.2s ease;
+}
+.hover-glow-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 20px 35px -10px rgba(16, 185, 129, 0.15), 0 8px 16px -4px rgba(0, 0, 0, 0.06);
+}
+
+/* Frosted glass pill badge */
+.glass-pill {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.dark .glass-pill {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Tech card glow border */
+.tech-glow-card {
+  position: relative;
+  transition: all 0.3s ease;
+}
+.tech-glow-card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(27,166,155,0.4), rgba(59,130,246,0.2), rgba(16,185,129,0.3));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+.tech-glow-card:hover::after {
+  opacity: 1;
 }
 
 /* ─── Print styles ───────────────────────────────────────────── */
